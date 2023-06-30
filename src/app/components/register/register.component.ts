@@ -1,4 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -20,17 +23,16 @@ export class RegisterComponent {
     ),
   ]);
 
+  constructor(
+    private _router: Router,
+    public authService: AuthenticationService
+  ) {}
+
   public newForm = new FormGroup({
     usuario: this.usuario,
     email: this.email,
     password: this.password,
   });
-
-  mostrar_datos(): void {
-    console.log(this.usuario.value);
-    console.log(this.email.value);
-    console.log(this.password.value);
-  }
 
   getErrorUsuario() {
     if (this.usuario.hasError('required')) {
@@ -54,5 +56,23 @@ export class RegisterComponent {
     }
 
     return this.password.hasError('pattern') ? 'Password no valido' : '';
+  }
+
+  mostrar_datos(): void {
+    this.authService
+      .nuevaCuenta({
+        username: this.usuario.value,
+        email: this.email.value,
+        password: this.password.value,
+      })
+      .subscribe(
+        (data) => {
+          this._router.navigate(['/Login']);
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          alert('Ocurrio un problema al crear nueva cuenta');
+        }
+      );
   }
 }

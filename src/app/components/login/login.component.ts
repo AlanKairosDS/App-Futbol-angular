@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -13,7 +13,6 @@ export class LoginComponent {
   public password: string | undefined;
 
   constructor(
-    private _route: ActivatedRoute,
     private _router: Router,
     public authService: AuthenticationService
   ) {}
@@ -23,8 +22,6 @@ export class LoginComponent {
   }
 
   mostrar_datos(): void {
-    console.log(this.usuario);
-    console.log(this.password);
     this.authService
       .iniciarSesion({
         username: this.usuario,
