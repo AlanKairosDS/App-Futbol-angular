@@ -1,0 +1,108 @@
+<mat-toolbar class="topbar" style="background-color: #f7f7f7">
+  <div mat-icon-button aria-label="Notifications">
+    <div id="logo">
+      <img src="assets/images/logos/logoLiga.png" width="60" alt="Logotipo" />
+    </div>
+  </div>
+  <span id="brand">Liga</span><span id="brand2">Flipendo</span>
+
+  <span class="flex-1-auto"></span>
+
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="profilemenu"
+    aria-label="Notifications"
+  >
+    <mat-icon class="d-flex align-items-center">
+      <i-tabler name="category" class="icon-25 d-flex"> </i-tabler>
+    </mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Zoom">
+    <mat-icon class="d-flex align-items-center">
+      <i-tabler name="brand-zoom" class="icon-25 d-flex"> </i-tabler>
+    </mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Facebook">
+    <mat-icon class="d-flex align-items-center">
+      <i-tabler name="brand-facebook-filled" class="icon-25 d-flex"> </i-tabler>
+    </mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Instagram">
+    <mat-icon class="d-flex align-items-center">
+      <i-tabler name="brand-instagram" class="icon-25 d-flex"> </i-tabler>
+    </mat-icon>
+  </button>
+
+  <mat-menu
+    #profilemenu="matMenu"
+    xPosition="before"
+    class="topbar-dd cardWithShadow"
+  >
+    <a mat-menu-item [routerLink]="['/Home']" [routerLinkActive]="['active']">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="home-2" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Inicio
+    </a>
+    <a
+      mat-menu-item
+      [routerLink]="['/Reglamento']"
+      [routerLinkActive]="['active']"
+    >
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="book-2" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Reglamento
+    </a>
+    <a
+      mat-menu-item
+      [routerLink]="['/Estadisticas']"
+      [routerLinkActive]="['active']"
+    >
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="columns" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Estadísticas
+    </a>
+    <a
+      mat-menu-item
+      [routerLink]="['/ProximosPartidos']"
+      [routerLinkActive]="['active']"
+    >
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="calendar-event" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Próximos Partidos
+    </a>
+    <a
+      mat-menu-item
+      [routerLink]="['/Contacto']"
+      [routerLinkActive]="['active']"
+    >
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="phone-call" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Contacto
+    </a>
+    <a
+      mat-menu-item
+      [routerLink]="['/Login']"
+      [routerLinkActive]="['active']"
+      *ngIf="!login"
+    >
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="login" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Log In
+    </a>
+    <a mat-menu-item *ngIf="login" (click)="logout()">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="login" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Log Out
+    </a>
+  </mat-menu>
+</mat-toolbar>

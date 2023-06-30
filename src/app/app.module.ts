@@ -1,16 +1,56 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { routing, appRoutingProviders } from './app.routing';
 
 import { AppComponent } from './app.component';
+import { AuthenticationService } from './services/authentication.service';
+
+// icons
+import { TablerIconsModule } from 'angular-tabler-icons';
+import * as TablerIcons from 'angular-tabler-icons/icons';
+
+//Import all material modules
+import { MaterialModule } from './material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HomeComponent } from './components/home/home.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+import { ReglamentoComponent } from './components/reglamento/reglamento.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    CalendarioComponent,
+    ContactoComponent,
+    EstadisticasComponent,
+    ReglamentoComponent,
+    LoginComponent,
+    RegisterComponent,
+    ErrorComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    TablerIconsModule.pick(TablerIcons),
+    routing,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [appRoutingProviders, AuthenticationService],
+  exports: [TablerIconsModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,20 @@
+.center-card {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.example-card {
+  width: 500px;
+  height: 430px;
+  background-color: #f8faf8;
+}
+
+#brand-card {
+  display: block;
+  color: #074e67;
+  font-size: 23px;
+  font-weight: bold;
+}
+

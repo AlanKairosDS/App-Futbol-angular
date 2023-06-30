@@ -1,0 +1,76 @@
+<div class="center-card-reg" style="margin-bottom: 40px">
+  <mat-card class="example-card-reg">
+    <mat-card-content>
+      <span id="brand-card-reg">BIENVENIDO</span>
+      <br />
+      <span>Ingresa los siguientes datos para poder registrarte</span>
+      <br /><br />
+      <form [formGroup]="newForm">
+        <mat-form-field style="width: 350px">
+          <mat-label>Usuario</mat-label>
+          <input
+            matInput
+            [formControl]="usuario"
+            required
+            placeholder="Nombre de Usuario"
+            matTooltip="El usuario debe tener entre 6 y 16 caracteres, puede contener letras minúsculas, letras mayúsculas, números, pero no debe de tener caracteres especiales"
+            [matTooltipPosition]="'left'"
+          />
+          <mat-icon matSuffix>
+            <i-tabler name="user"></i-tabler>
+          </mat-icon>
+          <mat-error *ngIf="usuario.invalid">{{ getErrorUsuario() }}</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="width: 350px">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            [formControl]="email"
+            required
+            placeholder="pat@example.com"
+          />
+          <mat-icon matSuffix>
+            <i-tabler name="mail"></i-tabler>
+          </mat-icon>
+          <mat-error *ngIf="email.invalid">{{ getErrorEmail() }}</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="width: 350px">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            [formControl]="password"
+            required
+            placeholder="Password"
+            matTooltip="El password debe tener entre 8 y 16 caracteres, al menos un número, al menos una letra minúscula, al menos una letra mayúscula y al menos uno de los siguientes caracteres especiales: $ @ * &"
+            [matTooltipPosition]="'left'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="password.invalid">{{
+            getErrorPassword()
+          }}</mat-error>
+        </mat-form-field>
+        <br /><br />
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="mostrar_datos()"
+          [disabled]="!newForm.valid"
+        >
+          Confirmar Registro
+        </button>
+      </form>
+      <br /><br />
+    </mat-card-content>
+  </mat-card>
+</div>

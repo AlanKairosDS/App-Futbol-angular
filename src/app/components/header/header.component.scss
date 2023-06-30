@@ -1,0 +1,99 @@
+#logo {
+  text-align: center;
+  width: 100%;
+  font-size: 30px;
+}
+
+#logo img {
+  display: block;
+  float: left;
+  animation: latir infinite 5s linear;
+}
+
+#brand {
+  text-align: center;
+  display: block;
+  margin: 0px;
+  float: left;
+  color: #074e67;
+}
+
+#brand2 {
+  text-align: center;
+  display: block;
+  margin: 0px;
+  float: left;
+  color: #dd9933;
+}
+
+#menu {
+  text-align: center;
+  width: 70%;
+  float: right;
+  font-size: 18px;
+}
+
+#menu ul {
+  line-height: 40px;
+  width: 60%;
+  float: right;
+}
+
+#menu ul li {
+  display: inline-block;
+  list-style: none;
+  height: 46px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#menu a {
+  text-decoration: none;
+  color: #074e67;
+  transition: 300ms all;
+}
+
+#menu a:hover,
+.active {
+  color: #dd9933 !important;
+}
+
+@media (max-width: 1314px) {
+  #menu ul {
+    width: auto;
+  }
+}
+
+@media (max-width: 881px) {
+  #menu {
+    width: auto;
+  }
+}
+
+@media (max-width: 813px) {
+  #logo {
+    float: none;
+    margin: 0px auto;
+  }
+
+  #menu,
+  #menu ul {
+    clear: both;
+    float: none;
+    margin: 0px;
+    padding: 0px;
+    line-height: 43px;
+  }
+}
+
+@media (max-width: 497px) {
+  #menu,
+  #menu ul {
+    line-height: 50px;
+  }
+
+  #menu ul li {
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+}

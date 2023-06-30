@@ -1,0 +1,33 @@
+<div class="center-card" style="margin-bottom: 40px">
+  <mat-card class="example-card">
+    <mat-card-content>
+      <span id="brand-card">BIENVENIDO</span>
+      <br />
+      <span>Haz login para continuar</span>
+      <br /><br />
+      <mat-form-field style="width: 350px">
+        <mat-label>Usuario</mat-label>
+        <input matInput [(ngModel)]="usuario" />
+      </mat-form-field>
+      <br />
+      <mat-form-field style="width: 350px">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="password" />
+      </mat-form-field>
+      <br />
+      <button mat-raised-button color="primary" (click)="mostrar_datos()">
+        Iniciar Sesión
+      </button>
+      <br /><br />
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-divider></mat-divider>
+      <br />
+      <span>¿No tienes una cuenta?</span>
+      <br /><br />
+      <button mat-raised-button color="warn" (click)="redireccion()">
+        Registrate
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</div>

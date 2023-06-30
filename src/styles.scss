@@ -1,0 +1,38 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+
+  font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+}
+
+.center {
+  width: 80%;
+  margin: 0px auto;
+}
+
+#content {
+  margin-left: 5%;
+  width: 90%;
+  margin-right: 5%;
+  margin-top: 20px;
+}
+
+@media (max-width: 1488px) {
+  .center {
+    width: 85%;
+  }
+}
+
+@media (max-width: 1314px) {
+  .center {
+    width: 95%;
+  }
+}
