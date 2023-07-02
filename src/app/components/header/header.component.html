@@ -87,6 +87,30 @@
       </mat-icon>
       Contacto
     </a>
+    <a mat-menu-item [routerLink]="['/AdministraFutbolistas']" *ngIf="admin">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="user-plus" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Administra Futbolistas
+    </a>
+    <a mat-menu-item [routerLink]="['/AdministraEquipos']" *ngIf="admin">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="shirt-sport" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Administra Equipos
+    </a>
+    <a mat-menu-item [routerLink]="['/AdministraPartidos']" *ngIf="admin">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="soccer-field" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Administra Partidos
+    </a>
+    <a mat-menu-item [routerLink]="['/AdministraResultados']" *ngIf="admin">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="report-analytics" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Administra Resultados
+    </a>
     <a
       mat-menu-item
       [routerLink]="['/Login']"

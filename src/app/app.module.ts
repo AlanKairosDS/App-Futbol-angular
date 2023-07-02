@@ -24,6 +24,11 @@ import { ReglamentoComponent } from './components/reglamento/reglamento.componen
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { FutbolistasComponent } from './components/futbolistas/futbolistas.component';
+import { EquiposComponent } from './components/equipos/equipos.component';
+import { PartidosComponent } from './components/partidos/partidos.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +43,11 @@ import { ErrorComponent } from './components/error/error.component';
     LoginComponent,
     RegisterComponent,
     ErrorComponent,
+    DialogComponent,
+    FutbolistasComponent,
+    EquiposComponent,
+    PartidosComponent,
+    ResultadosComponent,
   ],
   imports: [
     BrowserModule,

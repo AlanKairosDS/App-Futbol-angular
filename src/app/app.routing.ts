@@ -11,6 +11,10 @@ import { ReglamentoComponent } from './components/reglamento/reglamento.componen
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
+import { FutbolistasComponent } from './components/futbolistas/futbolistas.component';
+import { EquiposComponent } from './components/equipos/equipos.component';
+import { PartidosComponent } from './components/partidos/partidos.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -21,6 +25,10 @@ const appRoutes: Routes = [
   { path: 'Estadisticas', component: EstadisticasComponent },
   { path: 'ProximosPartidos', component: CalendarioComponent },
   { path: 'Contacto', component: ContactoComponent },
+  { path: 'AdministraFutbolistas', component: FutbolistasComponent },
+  { path: 'AdministraEquipos', component: EquiposComponent },
+  { path: 'AdministraPartidos', component: PartidosComponent },
+  { path: 'AdministraResultados', component: ResultadosComponent },
   { path: '**', component: ErrorComponent },
 ];
 

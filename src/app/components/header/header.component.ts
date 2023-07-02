@@ -9,6 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HeaderComponent implements OnInit {
   public objetoSession: any | undefined;
   public login: boolean | undefined;
+  public admin: boolean | undefined;
 
   constructor(public authService: AuthenticationService) {}
 
@@ -24,12 +25,18 @@ export class HeaderComponent implements OnInit {
 
     if (this.objetoSession !== null) {
       this.login = true;
+      if (JSON.parse(this.objetoSession).roles.includes('ROLE_ADMIN')) {
+        this.admin = true;
+      } else {
+        this.admin = false;
+      }
     } else {
       this.login = false;
     }
   }
 
   logout(): void {
+    this.admin = false;
     this.authService.cerrarSesion();
   }
 }
