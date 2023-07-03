@@ -29,6 +29,8 @@ import { FutbolistasComponent } from './components/futbolistas/futbolistas.compo
 import { EquiposComponent } from './components/equipos/equipos.component';
 import { PartidosComponent } from './components/partidos/partidos.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
+import { TablaComponent } from './components/tabla/tabla.component';
+import { LigaComponent } from './components/liga/liga.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { ResultadosComponent } from './components/resultados/resultados.componen
     EquiposComponent,
     PartidosComponent,
     ResultadosComponent,
+    TablaComponent,
+    LigaComponent,
   ],
   imports: [
     BrowserModule,

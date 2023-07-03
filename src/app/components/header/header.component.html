@@ -111,6 +111,18 @@
       </mat-icon>
       Administra Resultados
     </a>
+    <a mat-menu-item [routerLink]="['/AdministraTablaGeneral']" *ngIf="admin">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="table-plus" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Administra Tabla General
+    </a>
+    <a mat-menu-item [routerLink]="['/AdministraLigas']" *ngIf="admin">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="tournament" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>
+      Administra Ligas
+    </a>
     <a
       mat-menu-item
       [routerLink]="['/Login']"

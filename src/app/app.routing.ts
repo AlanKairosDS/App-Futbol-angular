@@ -15,6 +15,8 @@ import { FutbolistasComponent } from './components/futbolistas/futbolistas.compo
 import { EquiposComponent } from './components/equipos/equipos.component';
 import { PartidosComponent } from './components/partidos/partidos.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
+import { TablaComponent } from './components/tabla/tabla.component';
+import { LigaComponent } from './components/liga/liga.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -29,6 +31,8 @@ const appRoutes: Routes = [
   { path: 'AdministraEquipos', component: EquiposComponent },
   { path: 'AdministraPartidos', component: PartidosComponent },
   { path: 'AdministraResultados', component: ResultadosComponent },
+  { path: 'AdministraTablaGeneral', component: TablaComponent },
+  { path: 'AdministraLigas', component: LigaComponent },
   { path: '**', component: ErrorComponent },
 ];
 
