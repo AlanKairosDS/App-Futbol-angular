@@ -1,1 +1,288 @@
-<p>tabla works!</p>
+<div class="center-form-equipo" style="margin-bottom: 40px">
+  <span id="brand-form-equipo">TABLA GENERAL</span>
+</div>
+<div *ngIf="equipos === undefined && tablas === undefined" class="col-md-12">
+  <mat-grid-list cols="1" rowHeight="150px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="frontTablas()"
+        style="padding: 50px; background-color: #b5dd5b; font-weight: bold"
+      >
+        Administra Tablas Generales
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="frontEquipos()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        Registra Equipo en Tabla General
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div *ngIf="tablas && !equipos">
+  <div>
+    <form [formGroup]="newForm">
+      <mat-form-field class="col-md-12 col-sm-12">
+        <mat-label>Nombre de Equipo</mat-label>
+        <input
+          matInput
+          [formControl]="nombre"
+          required
+          placeholder="Nombre de Tabla"
+        />
+        <mat-icon matSuffix>
+          <i-tabler name="table-plus"></i-tabler>
+        </mat-icon>
+        <mat-error *ngIf="nombre.invalid">{{ getErrorNombre() }}</mat-error>
+      </mat-form-field>
+      <br /><br />
+      <div class="col-md-12">
+        <mat-grid-list cols="5" rowHeight="50px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              [disabled]="!newForm.valid"
+              style="background-color: #6ee0f3"
+              (click)="nuevaTabla()"
+            >
+              Nueva Tabla
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              style="background-color: #6ee0f3"
+              (click)="consultarTabla()"
+            >
+              Consultar Tablas
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              style="background-color: #6ee0f3"
+              (click)="consultarTablaId()"
+              [disabled]="dataSelect === undefined"
+            >
+              Consultar Info Tabla
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              style="background-color: #6ee0f3"
+              (click)="limpiarCampos()"
+            >
+              Limpiar Campos
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              style="background-color: #6ee0f3"
+              (click)="regresarPrincipal()"
+            >
+              Regresar
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </form>
+  </div>
+  <br />
+  <div
+    *ngIf="dataTable !== undefined && dataTableId === undefined"
+    class="col-md-12"
+  >
+    <section class="example-container mat-elevation-z8" tabindex="0">
+      <table mat-table [dataSource]="dataTable">
+        <ng-container
+          *ngFor="let column of columnsTabla"
+          [matColumnDef]="column.columnDef"
+        >
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.header }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ column.cell(row) }}
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumnsTabla; sticky: true"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumnsTabla"
+          (click)="selectRow(row)"
+        ></tr>
+      </table>
+    </section>
+  </div>
+  <div
+    *ngIf="
+      dataTableId !== undefined &&
+      dataTableId !== null &&
+      dataTableId.length > 0
+    "
+    class="col-md-12"
+  >
+    <section class="example-container mat-elevation-z8" tabindex="0">
+      <table mat-table [dataSource]="dataTableId">
+        <ng-container
+          *ngFor="let column of columnsTablaId"
+          [matColumnDef]="column.columnDef"
+        >
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.header }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ column.cell(row) }}
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayColumnsTablaId; sticky: true"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumnsTablaId"></tr>
+      </table>
+    </section>
+  </div>
+</div>
+<div *ngIf="equipos && !tablas">
+  <div class="col-md-12">
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field style="width: 90%">
+          <mat-label>Nombre Tabla</mat-label>
+          <input matInput [(ngModel)]="nombreTabla" disabled />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field style="width: 90%">
+          <mat-label>Nombre Equipo</mat-label>
+          <input matInput [(ngModel)]="nombreEquipo" disabled />
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="5" rowHeight="50px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button
+          mat-raised-button
+          style="background-color: #6ee0f3"
+          (click)="consultarTabla()"
+        >
+          Consultar Tablas
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button
+          mat-raised-button
+          style="background-color: #6ee0f3"
+          (click)="consultarEquipo()"
+        >
+          Consultar Equipos
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button
+          mat-raised-button
+          [disabled]="nombreEquipo === undefined || nombreTabla === undefined"
+          style="background-color: #6ee0f3"
+          (click)="registrarEquipo()"
+        >
+          Registrar Equipo
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button
+          mat-raised-button
+          style="background-color: #6ee0f3"
+          (click)="limpiarSeleccion()"
+        >
+          Limpiar Campos
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button
+          mat-raised-button
+          style="background-color: #6ee0f3"
+          (click)="regresarPrincipal()"
+        >
+          Regresar
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <br />
+    <mat-grid-list cols="2" rowHeight="600px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div *ngIf="dataTablas !== undefined">
+          <section
+            class="example-container mat-elevation-z8"
+            tabindex="0"
+            style="width: 450px"
+          >
+            <table mat-table [dataSource]="dataTablas">
+              <ng-container
+                *ngFor="let column of columnsTabla"
+                [matColumnDef]="column.columnDef"
+              >
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumnsTabla; sticky: true"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumnsTabla"
+                (click)="selectRowTabla(row)"
+              ></tr>
+            </table>
+          </section>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div *ngIf="dataEquipo !== undefined">
+          <section
+            class="example-container mat-elevation-z8"
+            tabindex="0"
+            style="width: 450px"
+          >
+            <table mat-table [dataSource]="dataEquipo">
+              <ng-container
+                *ngFor="let column of columnsEquipo"
+                [matColumnDef]="column.columnDef"
+              >
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumnsEquipo; sticky: true"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumnsEquipo"
+                (click)="selectRowEquipo(row)"
+              ></tr>
+            </table>
+          </section>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
