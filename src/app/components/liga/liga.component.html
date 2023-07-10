@@ -1,1 +1,34 @@
-<p>liga works!</p>
+<div class="center-form-equipo" style="margin-bottom: 40px">
+  <span id="brand-form-equipo">LIGA FLIPENDO</span>
+</div>
+<div *ngIf="varonil === undefined && femenil === undefined" class="col-md-12">
+  <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="varonilFront()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        LIGA VARONIL
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        style="padding: 50px; background-color: #b5dd5b; font-weight: bold"
+      >
+        LIGA FEMENIL
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div *ngIf="varonil">
+  <button
+    mat-raised-button
+    (click)="prueba()"
+    style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+  >
+    LIGA VARONIL
+  </button>
+</div>
+<br /><br /><br />
