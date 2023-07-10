@@ -15,6 +15,7 @@
     <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
       <button
         mat-raised-button
+        (click)="femenilFront()"
         style="padding: 50px; background-color: #b5dd5b; font-weight: bold"
       >
         LIGA FEMENIL
@@ -22,13 +23,6 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-<div *ngIf="varonil">
-  <button
-    mat-raised-button
-    (click)="prueba()"
-    style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
-  >
-    LIGA VARONIL
-  </button>
-</div>
+<div *ngIf="varonil === true && femenil === false" class="col-md-12"></div>
+<div *ngIf="femenil === true && varonil === false" class="col-md-12"></div>
 <br /><br /><br />

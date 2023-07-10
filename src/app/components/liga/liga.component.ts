@@ -7,8 +7,6 @@ import { LigasService } from 'src/app/services/ligas.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { VaronilComponent } from './varonil.component';
-import { FemenilComponent } from './femenil.component';
 
 @Component({
   selector: 'app-liga',
@@ -40,9 +38,7 @@ export class LigaComponent {
     public equipoService: EquiposService,
     public partidoService: PartidosService,
     public resultadoService: ResultadosService,
-    public dialog: MatDialog,
-    public varonilFunctions: VaronilComponent,
-    public femenilFunctions: FemenilComponent
+    public dialog: MatDialog
   ) {}
 
   varonilFront(): void {
@@ -50,14 +46,13 @@ export class LigaComponent {
     this.femenil = false;
   }
 
-  prueba(): void {
-    this.varonilFunctions.consultar_ligas().subscribe({
-      next: (data) => {
-        console.log(data);
-        let dialogConsultarSuccess = this.dialog.open(DialogComponent);
-        dialogConsultarSuccess.componentInstance.header = 'Exito';
-        dialogConsultarSuccess.componentInstance.message = 'EXITO';
-      },
-    });
+  femenilFront(): void {
+    this.varonil = false;
+    this.femenil = true;
+  }
+
+  principalFront(): void {
+    this.varonil = undefined;
+    this.femenil = undefined;
   }
 }
