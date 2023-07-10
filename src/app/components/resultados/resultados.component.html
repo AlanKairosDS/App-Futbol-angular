@@ -1,8 +1,8 @@
 <div class="center-form-equipo" style="margin-bottom: 40px">
   <span id="brand-form-equipo">RESULTADOS</span>
 </div>
-<div *ngIf="registrar === undefined && consultar === undefined" class="col-md-12">
-  <mat-grid-list cols="2" rowHeight="200px">
+<div *ngIf="registrar === undefined" class="col-md-12">
+  <mat-grid-list cols="1" rowHeight="200px">
     <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
       <button
         mat-raised-button
@@ -12,18 +12,9 @@
         Registrar Resultado
       </button>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
-      <button
-        mat-raised-button
-        (click)="consultarFront()"
-        style="padding: 50px; background-color: #b5dd5b; font-weight: bold"
-      >
-        Consultar Resultado
-      </button>
-    </mat-grid-tile>
   </mat-grid-list>
 </div>
-<div *ngIf="registrar === true && consultar === false" class="col-md-12">
+<div *ngIf="registrar === true" class="col-md-12">
   <mat-stepper linear #stepper>
     <mat-step [stepControl]="FormTabla">
       <form [formGroup]="FormTabla">
@@ -53,6 +44,10 @@
           </section>
           <br /><br />
           <div>
+            <button mat-raised-button (click)="principalFront()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
             <button
               mat-raised-button
               matStepperNext

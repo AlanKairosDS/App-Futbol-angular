@@ -6,7 +6,6 @@ import { ResultadosService } from 'src/app/services/resultados.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { Router } from '@angular/router';
 
 export interface SelectTabla {
   nombre: string;
@@ -39,7 +38,6 @@ export class ResultadosComponent {
   public consultarError = 'Ocurrio un problema al consultar resultados. Favor de intentar nuevamente.';
   //Validar seccion de administracion que se mostrara
   public registrar: boolean | undefined;
-  public consultar: boolean | undefined;
   //Variables para tablas
   public dataTablas: any | undefined;
   public dataSelectTablas: any | undefined;
@@ -116,7 +114,6 @@ export class ResultadosComponent {
   public displayColumnsPartido = this.columnsPartido.map((c) => c.columnDef);
 
   constructor(
-    private _router: Router,
     public tablaService: TablaService,
     public partidoService: PartidosService,
     public resultadoService: ResultadosService,
@@ -129,17 +126,12 @@ export class ResultadosComponent {
 
   principalFront(): void {
     this.registrar = undefined;
-    this.consultar = undefined;
+    this.FormTabla.reset();
+    this.FormPartido.reset();
   }
 
   registrarFront(): void {
     this.registrar = true;
-    this.consultar = false;
-  }
-
-  consultarFront(): void {
-    this.registrar = false;
-    this.consultar = true;
   }
 
   consultarTabla(): void {
@@ -313,7 +305,18 @@ export class ResultadosComponent {
         dialogInsertarSuccess.componentInstance.message = this.registrarSuccess;
 
         dialogInsertarSuccess.afterClosed().subscribe(() => {
-          this._router.navigate(['/Home']);
+          this.FormTabla.reset();
+          this.FormPartido.reset();
+          this.FormResultado.reset();
+          this.FormEstadisticas.reset();
+          this.idFutbolista = undefined;
+          this.goles = undefined;
+          this.asistencias = undefined;
+          this.amarillas = undefined;
+          this.rojas = undefined;
+          this.mvp = undefined;
+          this.estadisticas = [];
+          this.registrar = undefined;
         });
       },
       error: (err: HttpErrorResponse) => {
@@ -321,23 +324,6 @@ export class ResultadosComponent {
         let dialogInsertarError = this.dialog.open(DialogComponent);
         dialogInsertarError.componentInstance.header = this.headerError;
         dialogInsertarError.componentInstance.message = this.registrarError;
-      },
-    });
-  }
-
-  consultarResultados(): void {
-    this.resultadoService.consultar_resultados().subscribe({
-      next: (data) => {
-        this.dataResultado = data.data;
-        let dialogConsultarSuccess = this.dialog.open(DialogComponent);
-        dialogConsultarSuccess.componentInstance.header = this.headerSuccess;
-        dialogConsultarSuccess.componentInstance.message = this.consultarSuccess;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-        let dialogConsultarError = this.dialog.open(DialogComponent);
-        dialogConsultarError.componentInstance.header = this.headerError;
-        dialogConsultarError.componentInstance.message = this.consultarError;
       },
     });
   }
