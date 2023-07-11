@@ -1,0 +1,816 @@
+<!-- Seccion con Menu Principal -->
+<section class="example-container" *ngIf="mostrarPrincipal">
+  <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="mostrarFrontEquipos()"
+      >
+        Registrar Equipos
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="mostrarFrontPartidos()"
+      >
+        Registrar Partidos
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="mostrarFrontTablaGen()"
+      >
+        Registrar Tabla General
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="mostrarFrontResultados()"
+      >
+        Registrar Resultados
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="mostrarFrontGoles()"
+      >
+        Registrar Goles y Asistencias
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="mostrarFrontTarjetas()"
+      >
+        Registrar Tarjetas
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="mostrarFrontMvp()"
+      >
+        Registrar Jugadores MVP
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button
+        mat-raised-button
+        style="padding: 30px; background-color: #6ee0f3; font-weight: bold"
+        (click)="menuAnterior()"
+      >
+        Regresar a Menú Anterior
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>
+<!-- Seccion con Opcion para Registrar Equipos en Liga -->
+<section class="example-container" *ngIf="mostrarEquipos">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="FormLigas">
+      <form [formGroup]="FormLigas">
+        <ng-template matStepLabel>Seleccionar Liga</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona una Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Liga Varonil</mat-label>
+            <input matInput formControlName="liga" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataLigas">
+              <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga" (click)="selectRowLiga(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button (click)="mostrarFrontPrincipal()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectLigas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="FormEquipos">
+      <form [formGroup]="FormEquipos">
+        <ng-template matStepLabel>Seleccionar Equipos</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona los Equipos para la Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Nombre de Equipo</mat-label>
+            <input matInput formControlName="equipos" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 500px">
+            <table mat-table [dataSource]="dataEquipos">
+              <ng-container *ngFor="let column of columnsEquipo" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsEquipo; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsEquipo" (click)="selectRowEquipos(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button matStepperPrevious style="background-color: #b5dd5b">Anterior</button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectEquipos === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar Equipos</ng-template>
+      <div>
+        <br />
+        <span id="brand-form-equipo">Registrar Equipos en la Liga Varonil</span>
+        <br />
+      </div>
+      <br />
+      <div>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="registrarEquiposLiga()">
+          Registrar Equipos
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>
+<!-- Seccion con Opcion para Registrar Partidos en Liga -->
+<section class="example-container" *ngIf="mostrarPartidos">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="FormLigas">
+      <form [formGroup]="FormLigas">
+        <ng-template matStepLabel>Seleccionar Liga</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona una Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Liga Varonil</mat-label>
+            <input matInput formControlName="liga" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataLigas">
+              <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga" (click)="selectRowLiga(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button (click)="mostrarFrontPrincipal()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectLigas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="FormPartidos">
+      <form [formGroup]="FormPartidos">
+        <ng-template matStepLabel>Seleccionar Partidos</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona los Partidos de la Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Partido</mat-label>
+            <input matInput formControlName="partidos" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 500px">
+            <table mat-table [dataSource]="dataPartidos">
+              <ng-container *ngFor="let column of columnsPartido" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayColumnsPartido; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayColumnsPartido" (click)="selectRowPartidos(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button matStepperPrevious style="background-color: #b5dd5b">Anterior</button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectPartidos === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar Partidos</ng-template>
+      <div>
+        <br />
+        <span id="brand-form-equipo">Registrar Partidos de la Liga Varonil</span>
+        <br />
+      </div>
+      <br />
+      <div>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="registrarPartidosLiga()">
+          Registrar Partidos
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>
+<!-- Seccion con Opcion para Registrar Tabla General en Liga -->
+<section class="example-container" *ngIf="mostrarTablaGen">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="FormLigas">
+      <form [formGroup]="FormLigas">
+        <ng-template matStepLabel>Seleccionar Liga</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona una Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Liga Varonil</mat-label>
+            <input matInput formControlName="liga" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataLigas">
+              <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga" (click)="selectRowLiga(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button (click)="mostrarFrontPrincipal()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectLigas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="FormTablaGen">
+      <form [formGroup]="FormTablaGen">
+        <ng-template matStepLabel>Seleccionar Tabla General</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona la Tabla General de la Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Tabla General</mat-label>
+            <input matInput formControlName="tablaGen" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataTablaGeneral">
+              <ng-container *ngFor="let column of columnsTablaGen" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsTablaGen; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsTablaGen" (click)="selectRowTablaGen(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button matStepperPrevious style="background-color: #b5dd5b">Anterior</button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectTabla === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar Tabla General</ng-template>
+      <div>
+        <br />
+        <span id="brand-form-equipo">Registrar Tabla General de la Liga Varonil</span>
+        <br />
+      </div>
+      <br />
+      <div>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="registrarTablaGenLiga()">
+          Registrar Tabla General
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>
+<!-- Seccion con Opcion para Registrar Resultados en Liga -->
+<section class="example-container" *ngIf="mostrarResultados">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="FormLigas">
+      <form [formGroup]="FormLigas">
+        <ng-template matStepLabel>Seleccionar Liga</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona una Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Liga Varonil</mat-label>
+            <input matInput formControlName="liga" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataLigas">
+              <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga" (click)="selectRowLiga(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button (click)="mostrarFrontPrincipal()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectLigas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="FormResultados">
+      <form [formGroup]="FormResultados">
+        <ng-template matStepLabel>Seleccionar Resultados</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona los Resultados de la Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Resultados</mat-label>
+            <input matInput formControlName="resultados" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataResultados">
+              <ng-container *ngFor="let column of columnsResultados" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayColumnsResultados; sticky: true"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayColumnsResultados"
+                (click)="selectRowResultado(row)"
+              ></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button matStepperPrevious style="background-color: #b5dd5b">Anterior</button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectResultados === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar Resultados</ng-template>
+      <div>
+        <br />
+        <span id="brand-form-equipo">Registrar Resultados de la Liga Varonil</span>
+        <br />
+      </div>
+      <br />
+      <div>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="registrarResultadosLiga()">
+          Registrar Resultados
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>
+<!-- Seccion con Opcion para Registrar Goles en Liga -->
+<section class="example-container" *ngIf="mostrarGoles">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="FormLigas">
+      <form [formGroup]="FormLigas">
+        <ng-template matStepLabel>Seleccionar Liga</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona una Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Liga Varonil</mat-label>
+            <input matInput formControlName="liga" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataLigas">
+              <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga" (click)="selectRowLiga(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button (click)="mostrarFrontPrincipal()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectLigas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="FormGoles">
+      <form [formGroup]="FormGoles">
+        <ng-template matStepLabel>Seleccionar Estadisticas</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona los Goles y Asistencias de la Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Futbolista</mat-label>
+            <input matInput formControlName="goles" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataGoles">
+              <ng-container *ngFor="let column of columnsGoles" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayColumnsGoles; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayColumnsGoles" (click)="selectRowGoles(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button matStepperPrevious style="background-color: #b5dd5b">Anterior</button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectGoles === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar Estadisticas</ng-template>
+      <div>
+        <br />
+        <span id="brand-form-equipo">Registrar Goles y Asistencias de la Liga Varonil</span>
+        <br />
+      </div>
+      <br />
+      <div>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="registrarGolesLiga()">
+          Registrar Estadisticas
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>
+<!-- Seccion con Opcion para Registrar Tarjetas en Liga -->
+<section class="example-container" *ngIf="mostrarTarjetas">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="FormLigas">
+      <form [formGroup]="FormLigas">
+        <ng-template matStepLabel>Seleccionar Liga</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona una Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Liga Varonil</mat-label>
+            <input matInput formControlName="liga" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataLigas">
+              <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga" (click)="selectRowLiga(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button (click)="mostrarFrontPrincipal()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectLigas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="FormTarjetas">
+      <form [formGroup]="FormTarjetas">
+        <ng-template matStepLabel>Seleccionar Estadisticas</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona las Tarjetas de la Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Futbolista</mat-label>
+            <input matInput formControlName="tarjetas" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataTarjetas">
+              <ng-container *ngFor="let column of columnsTarjetas" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayColumnsTarjetas; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayColumnsTarjetas" (click)="selectRowTarjetas(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button matStepperPrevious style="background-color: #b5dd5b">Anterior</button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectTarjetas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar Estadisticas</ng-template>
+      <div>
+        <br />
+        <span id="brand-form-equipo">Registrar Tarjetas de la Liga Varonil</span>
+        <br />
+      </div>
+      <br />
+      <div>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="registrarTarjetasLiga()">
+          Registrar Estadisticas
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>
+<!-- Seccion con Opcion para Registrar MVP en Liga -->
+<section class="example-container" *ngIf="mostrarMvp">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="FormLigas">
+      <form [formGroup]="FormLigas">
+        <ng-template matStepLabel>Seleccionar Liga</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona una Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Liga Varonil</mat-label>
+            <input matInput formControlName="liga" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataLigas">
+              <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga" (click)="selectRowLiga(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button (click)="mostrarFrontPrincipal()" style="background-color: #b5dd5b">
+              Regresar a Menú
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectLigas === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="FormMvp">
+      <form [formGroup]="FormMvp">
+        <ng-template matStepLabel>Seleccionar Estadisticas</ng-template>
+        <div>
+          <br />
+          <span id="brand-form-equipo">Selecciona los MVP de la Liga Varonil</span>
+          <br />
+          <mat-form-field style="width: 100%">
+            <mat-label>Futbolista</mat-label>
+            <input matInput formControlName="mvp" />
+          </mat-form-field>
+          <br />
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 100%; height: 200px">
+            <table mat-table [dataSource]="dataMvp">
+              <ng-container *ngFor="let column of columnsMvp" [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ column.header }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{ column.cell(row) }}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayColumnsMvp; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayColumnsMvp" (click)="selectRowMvp(row)"></tr>
+            </table>
+          </section>
+          <br /><br />
+          <div>
+            <button mat-raised-button matStepperPrevious style="background-color: #b5dd5b">Anterior</button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              matStepperNext
+              style="background-color: #6ee0f3"
+              [disabled]="dataSelectMvp === undefined"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar Estadisticas</ng-template>
+      <div>
+        <br />
+        <span id="brand-form-equipo">Registrar MVP de la Liga Varonil</span>
+        <br />
+      </div>
+      <br />
+      <div>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="registrarMvpLiga()">
+          Registrar Estadisticas
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>

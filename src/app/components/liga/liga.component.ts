@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { EquiposService } from 'src/app/services/equipos.service';
-import { PartidosService } from 'src/app/services/partidos.service';
-import { ResultadosService } from 'src/app/services/resultados.service';
-import { TablaService } from 'src/app/services/tabla.service';
 import { LigasService } from 'src/app/services/ligas.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -33,42 +29,12 @@ export class LigaComponent {
   public nuevaLigaFemenil: boolean | undefined;
   public registrarLigaFemenil: boolean | undefined;
   //Variables para almacenar resultado de consultas
-  public dataEquipos: any | undefined;
-  public dataPartidos: any | undefined;
-  public dataResultados: any | undefined;
-  public dataTablaGeneral: any | undefined;
-  public dataGoles: any | undefined;
-  public dataTarjetas: any | undefined;
-  public dataMvp: any | undefined;
   public dataLigas: any | undefined;
   //Variables para formulario de crear liga
   public nombre = new FormControl('', [Validators.required]);
-  //Variables para stepper
-  public FormLigas = this.formBuilder.group({ estatus: [''] });
-  public FormEquipos = this.formBuilder.group({ estatus: [''] });
-  public arrayEquipos = new Set<any>();
-  public FormPartidos = this.formBuilder.group({ estatus: [''] });
-  public arrayPartidos = new Set<any>();
-  public FormTablaGen = this.formBuilder.group({ estatus: [''] });
-  public FormResultados = this.formBuilder.group({ estatus: [''] });
-  public arrayResultados = new Set<any>();
-  public FormGoles = this.formBuilder.group({ estatus: [''] });
-  public arrayGoles = new Set<any>();
-  public FormTarjetas = this.formBuilder.group({ estatus: [''] });
-  public arrayTarjetas = new Set<any>();
-  public FormMvp = this.formBuilder.group({ estatus: [''] });
-  public arrayMvp = new Set<any>();
 
   //Constructor
-  constructor(
-    private tablaService: TablaService,
-    private ligaService: LigasService,
-    private equipoService: EquiposService,
-    private partidoService: PartidosService,
-    private resultadoService: ResultadosService,
-    private dialog: MatDialog,
-    private formBuilder: FormBuilder
-  ) {}
+  constructor(private ligaService: LigasService, private dialog: MatDialog, private formBuilder: FormBuilder) {}
 
   //Formulario para crear liga
   public formNuevaLiga = new FormGroup({
@@ -127,14 +93,6 @@ export class LigaComponent {
     this.femenil = false;
     this.nuevaLigaVaronil = false;
     this.registrarLigaVaronil = true;
-    this.consultarLigas();
-    this.consultarEquipos();
-    this.consultarPartidos();
-    this.consultarTablaGeneral();
-    this.consultarResultados();
-    this.consultarGoles();
-    this.consultarTarjetas();
-    this.consultarMvp();
   }
 
   principalFemenilFront(): void {
@@ -164,14 +122,6 @@ export class LigaComponent {
     this.femenil = true;
     this.nuevaLigaFemenil = false;
     this.registrarLigaFemenil = true;
-    this.consultarLigas();
-    this.consultarEquipos();
-    this.consultarPartidos();
-    this.consultarTablaGeneral();
-    this.consultarResultados();
-    this.consultarGoles();
-    this.consultarTarjetas();
-    this.consultarMvp();
   }
 
   validarLiga(): string {
@@ -180,122 +130,6 @@ export class LigaComponent {
     } else {
       return 'Femenil';
     }
-  }
-
-  consultarEquipos(): void {
-    this.equipoService.consultar_equipo().subscribe({
-      next: (data) => {
-        this.dataEquipos = data.data;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      },
-    });
-  }
-
-  consultarPartidos(): void {
-    this.partidoService.consultar_partidos().subscribe({
-      next: (data) => {
-        this.dataPartidos = this.armarPartidos(data.data);
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      },
-    });
-  }
-
-  armarPartidos(data: any) {
-    let partidos: {
-      id: string;
-      jornada: number;
-      fecha: string;
-      hora: number;
-      idEquipoLocal: string;
-      equipoLocal: string;
-      idEquipoVisitante: string;
-      equipoVisitante: string;
-    }[] = [];
-
-    data.forEach(
-      (element: {
-        id: any;
-        jornada: any;
-        fecha: any;
-        hora: any;
-        equipoLocal: { id: any; nombre: any };
-        equipoVisitante: { id: any; nombre: any };
-      }) => {
-        let json = {
-          id: element.id,
-          jornada: element.jornada,
-          fecha: element.fecha,
-          hora: element.hora,
-          idEquipoLocal: element.equipoLocal.id,
-          equipoLocal: element.equipoLocal.nombre,
-          idEquipoVisitante: element.equipoVisitante.id,
-          equipoVisitante: element.equipoVisitante.nombre,
-        };
-
-        partidos.push(json);
-      }
-    );
-
-    return partidos;
-  }
-
-  consultarResultados(): void {
-    this.resultadoService.consultar_resultados().subscribe({
-      next: (data) => {
-        this.dataResultados = data.data;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      },
-    });
-  }
-
-  consultarTablaGeneral(): void {
-    this.tablaService.consultar_tablas().subscribe({
-      next: (data) => {
-        this.dataTablaGeneral = data.data;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      },
-    });
-  }
-
-  consultarGoles(): void {
-    this.resultadoService.consultar_goles().subscribe({
-      next: (data) => {
-        this.dataGoles = data.data;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      },
-    });
-  }
-
-  consultarTarjetas(): void {
-    this.resultadoService.consultar_tarjetas().subscribe({
-      next: (data) => {
-        this.dataTarjetas = data.data;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      },
-    });
-  }
-
-  consultarMvp(): void {
-    this.resultadoService.consultar_mvp().subscribe({
-      next: (data) => {
-        this.dataMvp = data.data;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      },
-    });
   }
 
   nuevaLiga(): void {
@@ -328,8 +162,4 @@ export class LigaComponent {
       },
     });
   }
-
-  armarPeticionRegistrarLiga(): void {}
-
-  registrarInformacionLiga(): void {}
 }

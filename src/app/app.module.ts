@@ -31,6 +31,8 @@ import { PartidosComponent } from './components/partidos/partidos.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { TablaComponent } from './components/tabla/tabla.component';
 import { LigaComponent } from './components/liga/liga.component';
+import { VaronilComponent } from './components/varonil/varonil.component';
+import { FemenilComponent } from './components/femenil/femenil.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { LigaComponent } from './components/liga/liga.component';
     ResultadosComponent,
     TablaComponent,
     LigaComponent,
+    VaronilComponent,
+    FemenilComponent,
   ],
   imports: [
     BrowserModule,

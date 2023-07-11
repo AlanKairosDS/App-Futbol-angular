@@ -1,0 +1,27 @@
+.center-form-equipo {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#brand-form-equipo {
+  display: block;
+  color: #074e67;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.example-container {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background-color: #f4f4f4;
+}
