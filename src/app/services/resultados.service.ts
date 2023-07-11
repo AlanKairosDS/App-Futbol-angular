@@ -6,15 +6,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ResultadosService {
-  public contexto = 'http://localhost:8000/msvc-liga/resultado/api';
-
   constructor(private http: HttpClient) {}
 
   registrar_resultado(request: any): Observable<any> {
-    return this.http.post(this.contexto + '/registrar-resultado', request);
+    return this.http.post('http://localhost:8000/msvc-liga/resultado/api/registrar-resultado', request);
+  }
+
+  consultar_goles(): Observable<any> {
+    return this.http.get('http://localhost:8000/msvc-liga/goles-asistencias/api/consultar-goles');
+  }
+
+  consultar_tarjetas(): Observable<any> {
+    return this.http.get('http://localhost:8000/msvc-liga/tarjetas/api/consultar-tarjetas');
+  }
+
+  consultar_mvp(): Observable<any> {
+    return this.http.get('http://localhost:8000/msvc-liga/mvp/api/consultar-mvp');
   }
 
   consultar_resultados(): Observable<any> {
-    return this.http.get(this.contexto + '/consultar-resultados');
+    return this.http.get('http://localhost:8000/msvc-liga/resultado/api/consultar-resultados');
   }
 }

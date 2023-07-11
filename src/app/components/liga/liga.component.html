@@ -1,7 +1,17 @@
 <div class="center-form-equipo" style="margin-bottom: 40px">
   <span id="brand-form-equipo">LIGA FLIPENDO</span>
 </div>
-<div *ngIf="varonil === undefined && femenil === undefined" class="col-md-12">
+<div
+  *ngIf="
+    varonil === undefined &&
+    femenil === undefined &&
+    nuevaLigaVaronil === undefined &&
+    registrarLigaVaronil === undefined &&
+    nuevaLigaFemenil === undefined &&
+    registrarLigaFemenil === undefined
+  "
+  class="col-md-12"
+>
   <mat-grid-list cols="2" rowHeight="200px">
     <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
       <button
@@ -16,13 +26,269 @@
       <button
         mat-raised-button
         (click)="femenilFront()"
-        style="padding: 50px; background-color: #b5dd5b; font-weight: bold"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
       >
         LIGA FEMENIL
       </button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-<div *ngIf="varonil === true && femenil === false" class="col-md-12"></div>
-<div *ngIf="femenil === true && varonil === false" class="col-md-12"></div>
+<div
+  *ngIf="
+    varonil === true &&
+    femenil === false &&
+    nuevaLigaVaronil === undefined &&
+    registrarLigaVaronil === undefined &&
+    nuevaLigaFemenil === undefined &&
+    registrarLigaFemenil === undefined
+  "
+  class="col-md-12"
+>
+  <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="nuevaVaronilFront()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        Crear Liga
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="registrarVaronilFront()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        Administrar Liga
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="principalVaronilFront()"
+        style="padding: 50px; background-color: #b5dd5b; font-weight: bold"
+      >
+        Menú Anterior
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div
+  *ngIf="
+    femenil === true &&
+    varonil === false &&
+    nuevaLigaVaronil === undefined &&
+    registrarLigaVaronil === undefined &&
+    nuevaLigaFemenil === undefined &&
+    registrarLigaFemenil === undefined
+  "
+  class="col-md-12"
+>
+  <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="nuevaFemenilFront()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        Crear Liga
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="registrarFemenilFront()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        Administrar Liga
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="principalFemenilFront()"
+        style="padding: 50px; background-color: #b5dd5b; font-weight: bold"
+      >
+        Menú Anterior
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div
+  *ngIf="
+    varonil === true &&
+    femenil === false &&
+    nuevaLigaVaronil === true &&
+    registrarLigaVaronil === false &&
+    nuevaLigaFemenil === undefined &&
+    registrarLigaFemenil === undefined
+  "
+  class="col-md-12"
+>
+  <div>
+    <form [formGroup]="formNuevaLiga">
+      <mat-form-field class="col-md-12 col-sm-12">
+        <mat-label>Nombre de Liga Varonil</mat-label>
+        <input matInput [formControl]="nombre" required placeholder="Nombre de Liga Varonil" />
+        <mat-icon matSuffix>
+          <i-tabler name="table-plus"></i-tabler>
+        </mat-icon>
+        <mat-error *ngIf="nombre.invalid">{{ getErrorNombre() }}</mat-error>
+      </mat-form-field>
+      <br /><br />
+      <div class="col-md-12">
+        <mat-grid-list cols="4" rowHeight="50px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              [disabled]="!formNuevaLiga.valid"
+              style="background-color: #6ee0f3"
+              (click)="nuevaLiga()"
+            >
+              Crear Nueva Liga
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarLigas()">
+              Consultar Ligas
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button style="background-color: #6ee0f3" (click)="limpiarCampos()">
+              Limpiar Campos
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button style="background-color: #b5dd5b" (click)="varonilFront()">Regresar</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </form>
+  </div>
+  <br />
+  <div *ngIf="dataLigas !== undefined" class="col-md-12">
+    <section class="example-container mat-elevation-z8" tabindex="0">
+      <table mat-table [dataSource]="dataLigas">
+        <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.header }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ column.cell(row) }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga"></tr>
+      </table>
+    </section>
+  </div>
+</div>
+<div
+  *ngIf="
+    varonil === true &&
+    femenil === false &&
+    nuevaLigaVaronil === false &&
+    registrarLigaVaronil === true &&
+    nuevaLigaFemenil === undefined &&
+    registrarLigaFemenil === undefined
+  "
+  class="col-md-12"
+>
+  <button
+    mat-raised-button
+    (click)="varonilFront()"
+    style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+  >
+    REGISTRAR VARONIL
+  </button>
+</div>
+<div
+  *ngIf="
+    varonil === false &&
+    femenil === true &&
+    nuevaLigaVaronil === undefined &&
+    registrarLigaVaronil === undefined &&
+    nuevaLigaFemenil === true &&
+    registrarLigaFemenil === false
+  "
+  class="col-md-12"
+>
+  <div>
+    <form [formGroup]="formNuevaLiga">
+      <mat-form-field class="col-md-12 col-sm-12">
+        <mat-label>Nombre de Liga Femenil</mat-label>
+        <input matInput [formControl]="nombre" required placeholder="Nombre de Liga Femenil" />
+        <mat-icon matSuffix>
+          <i-tabler name="table-plus"></i-tabler>
+        </mat-icon>
+        <mat-error *ngIf="nombre.invalid">{{ getErrorNombre() }}</mat-error>
+      </mat-form-field>
+      <br /><br />
+      <div class="col-md-12">
+        <mat-grid-list cols="4" rowHeight="50px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              [disabled]="!formNuevaLiga.valid"
+              style="background-color: #6ee0f3"
+              (click)="nuevaLiga()"
+            >
+              Crear Nueva Liga
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarLigas()">
+              Consultar Ligas
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button style="background-color: #6ee0f3" (click)="limpiarCampos()">
+              Limpiar Campos
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button style="background-color: #b5dd5b" (click)="femenilFront()">Regresar</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </form>
+  </div>
+  <br />
+  <div *ngIf="dataLigas !== undefined" class="col-md-12">
+    <section class="example-container mat-elevation-z8" tabindex="0">
+      <table mat-table [dataSource]="dataLigas">
+        <ng-container *ngFor="let column of columnsLiga" [matColumnDef]="column.columnDef">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.header }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ column.cell(row) }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsLiga; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsLiga"></tr>
+      </table>
+    </section>
+  </div>
+</div>
+<div
+  *ngIf="
+    varonil === false &&
+    femenil === true &&
+    nuevaLigaVaronil === undefined &&
+    registrarLigaVaronil === undefined &&
+    nuevaLigaFemenil === false &&
+    registrarLigaFemenil === true
+  "
+  class="col-md-12"
+>
+  <button
+    mat-raised-button
+    (click)="femenilFront()"
+    style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+  >
+    REGISTRAR FEMENIL
+  </button>
+</div>
 <br /><br /><br />
