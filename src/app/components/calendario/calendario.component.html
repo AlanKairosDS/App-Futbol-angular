@@ -1,1 +1,31 @@
-<p>calendario works!</p>
+<div *ngIf="varonil === undefined && femenil === undefined" class="col-md-12">
+  <div class="center-form-equipo" style="margin-bottom: 40px">
+    <span id="brand-form-equipo">LISTA DE PARTIDOS</span>
+  </div>
+  <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="varonilFront()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        LIGA VARONIL
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
+      <button
+        mat-raised-button
+        (click)="femenilFront()"
+        style="padding: 50px; background-color: #6ee0f3; font-weight: bold"
+      >
+        LIGA FEMENIL
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div *ngIf="varonil === true && femenil === false" class="col-md-12">
+  <app-cal-varonil></app-cal-varonil>
+</div>
+<div *ngIf="varonil === false && femenil === true" class="col-md-12">
+  <app-cal-femenil></app-cal-femenil>
+</div>

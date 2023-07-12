@@ -273,7 +273,17 @@ export class EstadVaronilComponent {
     }
 
     if (tablaGeneral.length > 0) {
-      this.dataTablaGen = tablaGeneral.sort((x, y) => y.puntos - x.puntos);
+      this.dataTablaGen = tablaGeneral.sort((x, y) => {
+        if (y.puntos < x.puntos) {
+          return -1;
+        }
+
+        if (y.puntos > x.puntos) {
+          return 1;
+        }
+
+        return y.diferenciaGoles - x.diferenciaGoles;
+      });
     }
   }
 

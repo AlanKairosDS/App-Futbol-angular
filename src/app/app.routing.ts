@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'Reglamento', component: ReglamentoComponent },
   { path: 'Estadisticas', component: EstadisticasComponent },
-  { path: 'ProximosPartidos', component: CalendarioComponent },
+  { path: 'Partidos', component: CalendarioComponent },
   { path: 'Contacto', component: ContactoComponent },
   { path: 'AdministraFutbolistas', component: FutbolistasComponent },
   { path: 'AdministraEquipos', component: EquiposComponent },

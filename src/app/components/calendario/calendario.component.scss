@@ -1,0 +1,41 @@
+.center-form-equipo {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#brand-form-equipo {
+  display: block;
+  color: #074e67;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.example-container {
+  overflow: auto;
+}
+
+.example-container-menu {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background-color: #f4f4f4;
+}
+
+.wrapper {
+  margin-left: 1em;
+  margin-right: 1em;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 1em;
+  grid-column-gap: 1em;
+}
