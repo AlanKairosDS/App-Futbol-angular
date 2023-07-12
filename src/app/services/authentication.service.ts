@@ -9,25 +9,17 @@ import { DialogComponent } from '../components/dialog/dialog.component';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(
-    private _router: Router,
-    private http: HttpClient,
-    public dialog: MatDialog
-  ) {}
+  constructor(private _router: Router, private http: HttpClient, public dialog: MatDialog) {}
 
   iniciarSesion(request: any): Observable<any> {
-    return this.http.post(
-      'http://localhost:8002/msvc-login/api/auth/iniciar-sesion',
-      request
-    );
+    return this.http.post('http://localhost:8002/msvc-login/api/auth/iniciar-sesion', request);
   }
 
   cerrarSesion(): void {
     sessionStorage.removeItem('Session');
 
     let dialogSuccess = this.dialog.open(DialogComponent);
-    dialogSuccess.componentInstance.header =
-      'Se realizo Logout de forma Exitosa';
+    dialogSuccess.componentInstance.header = 'Se realizo Logout de forma Exitosa';
     dialogSuccess.componentInstance.message =
       'Se cerro sesion de forma correcta. Regresaremos a la pantalla de Inicio.';
 
@@ -37,9 +29,6 @@ export class AuthenticationService {
   }
 
   nuevaCuenta(request: any): Observable<any> {
-    return this.http.post(
-      'http://localhost:8002/msvc-login/api/auth/registrar-usuario',
-      request
-    );
+    return this.http.post('http://localhost:8002/msvc-login/api/auth/registrar-usuario', request);
   }
 }

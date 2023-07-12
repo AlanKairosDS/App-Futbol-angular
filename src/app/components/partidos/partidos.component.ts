@@ -30,22 +30,15 @@ export class PartidosComponent {
   public headerSuccess = 'Proceso ejecutado correctamente';
   public headerError = 'Proceso ejecutado de forma incorrecta';
   public insertarSuccess = 'Se registro el partido de forma correcta.';
-  public insertarError =
-    'Ocurrio un problema al registrar partido. Favor de intentar nuevamente.';
+  public insertarError = 'Ocurrio un problema al registrar partido. Favor de intentar nuevamente.';
   public actualizarSuccess = 'Se actualizo el partido de forma correcta.';
-  public actualizarError =
-    'Ocurrio un problema al actualizar partido. Favor de intentar nuevamente.';
+  public actualizarError = 'Ocurrio un problema al actualizar partido. Favor de intentar nuevamente.';
   public eliminarSuccess = 'Se elimina el partido de forma correcta.';
-  public eliminarError =
-    'Ocurrio un problema al eliminar partido. Favor de intentar nuevamente.';
-  public consultarSuccess =
-    'Se realiza la consulta de partidos de forma correcta.';
-  public consultarError =
-    'Ocurrio un problema al consultar partidos. Favor de intentar nuevamente.';
-  public consultarEquiposSuccess =
-    'Se realiza la consulta de equipos de forma correcta.';
-  public consultarEquiposError =
-    'Ocurrio un problema al consultar equipos. Favor de intentar nuevamente.';
+  public eliminarError = 'Ocurrio un problema al eliminar partido. Favor de intentar nuevamente.';
+  public consultarSuccess = 'Se realiza la consulta de partidos de forma correcta.';
+  public consultarError = 'Ocurrio un problema al consultar partidos. Favor de intentar nuevamente.';
+  public consultarEquiposSuccess = 'Se realiza la consulta de equipos de forma correcta.';
+  public consultarEquiposError = 'Ocurrio un problema al consultar equipos. Favor de intentar nuevamente.';
 
   //Validar front que se mostrar
   public registrar: boolean | undefined;
@@ -75,9 +68,7 @@ export class PartidosComponent {
       cell: (elementEquipo: DataEquipo) => `${elementEquipo.nombre}`,
     },
   ];
-  public displayedColumnsEquipoLocal = this.columnsEquipoLocal.map(
-    (c) => c.columnDef
-  );
+  public displayedColumnsEquipoLocal = this.columnsEquipoLocal.map((c) => c.columnDef);
 
   public columnsEquipoVisita = [
     {
@@ -86,9 +77,7 @@ export class PartidosComponent {
       cell: (elementEquipo: DataEquipo) => `${elementEquipo.nombre}`,
     },
   ];
-  public displayedColumnsEquipoVisita = this.columnsEquipoVisita.map(
-    (c) => c.columnDef
-  );
+  public displayedColumnsEquipoVisita = this.columnsEquipoVisita.map((c) => c.columnDef);
 
   //Funciones para mostrar tabla de Partidos
   public columnsPartido = [
@@ -121,11 +110,7 @@ export class PartidosComponent {
   public displayColumnsPartido = this.columnsPartido.map((c) => c.columnDef);
 
   //Constructor de clase
-  constructor(
-    public equipoService: EquiposService,
-    public partidoService: PartidosService,
-    public dialog: MatDialog
-  ) {}
+  constructor(public equipoService: EquiposService, public partidoService: PartidosService, public dialog: MatDialog) {}
 
   //Funcion para crear formulario y realizar validaciones
   public newForm = new FormGroup({
@@ -277,14 +262,12 @@ export class PartidosComponent {
         this.dataEquipoLocal = data.data;
         let dialogConsultarSuccess = this.dialog.open(DialogComponent);
         dialogConsultarSuccess.componentInstance.header = this.headerSuccess;
-        dialogConsultarSuccess.componentInstance.message =
-          this.consultarEquiposSuccess;
+        dialogConsultarSuccess.componentInstance.message = this.consultarEquiposSuccess;
       },
       error: (err: HttpErrorResponse) => {
         let dialogConsultarError = this.dialog.open(DialogComponent);
         dialogConsultarError.componentInstance.header = this.headerError;
-        dialogConsultarError.componentInstance.message =
-          this.consultarEquiposError;
+        dialogConsultarError.componentInstance.message = this.consultarEquiposError;
       },
     });
   }
@@ -296,14 +279,12 @@ export class PartidosComponent {
         this.dataEquipoVisita = data.data;
         let dialogConsultarSuccess = this.dialog.open(DialogComponent);
         dialogConsultarSuccess.componentInstance.header = this.headerSuccess;
-        dialogConsultarSuccess.componentInstance.message =
-          this.consultarEquiposSuccess;
+        dialogConsultarSuccess.componentInstance.message = this.consultarEquiposSuccess;
       },
       error: (err: HttpErrorResponse) => {
         let dialogConsultarError = this.dialog.open(DialogComponent);
         dialogConsultarError.componentInstance.header = this.headerError;
-        dialogConsultarError.componentInstance.message =
-          this.consultarEquiposError;
+        dialogConsultarError.componentInstance.message = this.consultarEquiposError;
       },
     });
   }
@@ -322,8 +303,7 @@ export class PartidosComponent {
         next: (data) => {
           let dialogInsertarSuccess = this.dialog.open(DialogComponent);
           dialogInsertarSuccess.componentInstance.header = this.headerSuccess;
-          dialogInsertarSuccess.componentInstance.message =
-            this.insertarSuccess;
+          dialogInsertarSuccess.componentInstance.message = this.insertarSuccess;
         },
         error: (err: HttpErrorResponse) => {
           let dialogInsertarError = this.dialog.open(DialogComponent);
@@ -350,14 +330,12 @@ export class PartidosComponent {
         next: (data) => {
           let dialogActualizarSuccess = this.dialog.open(DialogComponent);
           dialogActualizarSuccess.componentInstance.header = this.headerSuccess;
-          dialogActualizarSuccess.componentInstance.message =
-            this.actualizarSuccess;
+          dialogActualizarSuccess.componentInstance.message = this.actualizarSuccess;
         },
         error: (err: HttpErrorResponse) => {
           let dialogActualizarError = this.dialog.open(DialogComponent);
           dialogActualizarError.componentInstance.header = this.headerError;
-          dialogActualizarError.componentInstance.message =
-            this.actualizarError;
+          dialogActualizarError.componentInstance.message = this.actualizarError;
         },
       });
   }
@@ -385,8 +363,7 @@ export class PartidosComponent {
         this.dataPartido = this.armarPartidos(data.data);
         let dialogConsultarSuccess = this.dialog.open(DialogComponent);
         dialogConsultarSuccess.componentInstance.header = this.headerSuccess;
-        dialogConsultarSuccess.componentInstance.message =
-          this.consultarSuccess;
+        dialogConsultarSuccess.componentInstance.message = this.consultarSuccess;
       },
       error: (err: HttpErrorResponse) => {
         let dialogConsultarError = this.dialog.open(DialogComponent);

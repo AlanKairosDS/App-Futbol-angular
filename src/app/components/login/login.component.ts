@@ -17,11 +17,7 @@ export class LoginComponent {
   public messageError =
     'Los datos son incorrectos o ocurrio un problema de comunicación. Favor de intentar nuevamente.';
 
-  constructor(
-    private _router: Router,
-    public authService: AuthenticationService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private _router: Router, public authService: AuthenticationService, public dialog: MatDialog) {}
 
   redireccion(): void {
     this._router.navigate(['/NuevaCuenta']);
@@ -37,8 +33,7 @@ export class LoginComponent {
         (data) => {
           sessionStorage.setItem('Session', JSON.stringify(data.data));
           let dialogSuccess = this.dialog.open(DialogComponent);
-          dialogSuccess.componentInstance.header =
-            'Se realizo Login de forma Exitosa';
+          dialogSuccess.componentInstance.header = 'Se realizo Login de forma Exitosa';
           dialogSuccess.componentInstance.message =
             'Se inicio sesion de forma correcta. Regresaremos a la pantalla de Inicio.';
 

@@ -1,9 +1,5 @@
 <div>
-  <img
-    src="assets/images/backgrounds/Banner-Contacto.jpg"
-    alt="Banner-Contacto"
-    class="contacto-banner"
-  />
+  <img src="assets/images/backgrounds/Banner-Contacto.jpg" alt="Banner-Contacto" class="contacto-banner" />
 </div>
 <mat-grid-list cols="3" rowHeight="190px">
   <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -25,13 +21,7 @@
         <form [formGroup]="newForm">
           <mat-form-field class="input-text">
             <mat-label>Nombre</mat-label>
-            <input
-              matInput
-              required
-              placeholder="Nombre Completo"
-              [formControl]="nombre"
-              maxlength="50"
-            />
+            <input matInput required placeholder="Nombre Completo" [formControl]="nombre" maxlength="50" />
             <mat-icon matSuffix>
               <i-tabler name="user"></i-tabler>
             </mat-icon>
@@ -40,14 +30,7 @@
           <br />
           <mat-form-field class="input-text">
             <mat-label>Email</mat-label>
-            <input
-              matInput
-              type="email"
-              required
-              placeholder="pat@example.com"
-              [formControl]="email"
-              maxlength="50"
-            />
+            <input matInput type="email" required placeholder="pat@example.com" [formControl]="email" maxlength="50" />
             <mat-icon matSuffix>
               <i-tabler name="mail"></i-tabler>
             </mat-icon>
@@ -56,19 +39,11 @@
           <br />
           <mat-form-field class="input-text">
             <mat-label>Telefono</mat-label>
-            <input
-              matInput
-              type="tel"
-              required
-              placeholder="55-1234-5678"
-              [formControl]="telefono"
-            />
+            <input matInput type="tel" required placeholder="55-1234-5678" [formControl]="telefono" />
             <mat-icon matSuffix>
               <i-tabler name="phone"></i-tabler>
             </mat-icon>
-            <mat-error *ngIf="telefono.invalid">{{
-              getErrorTelefono()
-            }}</mat-error>
+            <mat-error *ngIf="telefono.invalid">{{ getErrorTelefono() }}</mat-error>
           </mat-form-field>
           <br />
           <mat-form-field class="input-text">
@@ -83,17 +58,10 @@
             <mat-icon matSuffix>
               <i-tabler name="align-center"></i-tabler>
             </mat-icon>
-            <mat-error *ngIf="comentarios.invalid">{{
-              getErrorComentarios()
-            }}</mat-error>
+            <mat-error *ngIf="comentarios.invalid">{{ getErrorComentarios() }}</mat-error>
           </mat-form-field>
           <br /><br />
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="mostrar_datos()"
-            [disabled]="!newForm.valid"
-          >
+          <button mat-raised-button color="primary" (click)="mostrar_datos()" [disabled]="!newForm.valid">
             Confirmar Registro
           </button>
         </form>
@@ -106,9 +74,7 @@
         <mat-icon style="color: #074e67">home</mat-icon>
       </button>
       <br /><br />
-      <span>
-        Calle Granjas No.45 Colonia palo alto delegacion cuajimalpa C.P. 05110
-      </span>
+      <span> Calle Granjas No.45 Colonia palo alto delegacion cuajimalpa C.P. 05110 </span>
     </div>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="1">

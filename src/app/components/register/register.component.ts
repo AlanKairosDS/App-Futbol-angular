@@ -10,23 +10,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  public usuario = new FormControl('', [
-    Validators.required,
-    Validators.pattern('[a-zA-Z0-9]{6,15}'),
-  ]);
+  public usuario = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9]{6,15}')]);
   public email = new FormControl('', [Validators.required, Validators.email]);
   public hide = true;
   public password = new FormControl('', [
     Validators.required,
-    Validators.pattern(
-      '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$*&])[A-Za-zd$@$*&].{8,15}'
-    ),
+    Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$*&])[A-Za-zd$@$*&].{8,15}'),
   ]);
 
-  constructor(
-    private _router: Router,
-    public authService: AuthenticationService
-  ) {}
+  constructor(private _router: Router, public authService: AuthenticationService) {}
 
   public newForm = new FormGroup({
     usuario: this.usuario,

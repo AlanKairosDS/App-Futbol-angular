@@ -1,10 +1,7 @@
 <div class="center-form-equipo" style="margin-bottom: 40px">
   <span id="brand-form-equipo">PARTIDOS</span>
 </div>
-<div
-  *ngIf="registrar === undefined && consultar === undefined"
-  class="col-md-12"
->
+<div *ngIf="registrar === undefined && consultar === undefined" class="col-md-12">
   <mat-grid-list cols="1" rowHeight="150px">
     <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
       <button
@@ -31,42 +28,23 @@
     <form [formGroup]="newForm2">
       <mat-form-field class="col-md-3 col-sm-12">
         <mat-label>Nombre de Equipo Local</mat-label>
-        <input
-          matInput
-          [formControl]="nombreEquipoLocal"
-          required
-          placeholder="Nombre de Equipo Local"
-        />
+        <input matInput [formControl]="nombreEquipoLocal" required placeholder="Nombre de Equipo Local" />
         <mat-icon matSuffix>
           <i-tabler name="soccer-field"></i-tabler>
         </mat-icon>
-        <mat-error *ngIf="nombreEquipoLocal.invalid">{{
-          getErrorEquipoLocal()
-        }}</mat-error>
+        <mat-error *ngIf="nombreEquipoLocal.invalid">{{ getErrorEquipoLocal() }}</mat-error>
       </mat-form-field>
       <mat-form-field class="col-md-3 col-sm-12">
         <mat-label>Nombre de Equipo Visita</mat-label>
-        <input
-          matInput
-          [formControl]="nombreEquipoVisita"
-          required
-          placeholder="Nombre de Equipo Visita"
-        />
+        <input matInput [formControl]="nombreEquipoVisita" required placeholder="Nombre de Equipo Visita" />
         <mat-icon matSuffix>
           <i-tabler name="soccer-field"></i-tabler>
         </mat-icon>
-        <mat-error *ngIf="nombreEquipoVisita.invalid">{{
-          getErrorEquipoVisita()
-        }}</mat-error>
+        <mat-error *ngIf="nombreEquipoVisita.invalid">{{ getErrorEquipoVisita() }}</mat-error>
       </mat-form-field>
       <mat-form-field class="col-md-2 col-sm-4">
         <mat-label>Jornada</mat-label>
-        <input
-          matInput
-          [formControl]="jornada"
-          required
-          placeholder="Jornada"
-        />
+        <input matInput [formControl]="jornada" required placeholder="Jornada" />
         <mat-icon matSuffix>
           <i-tabler name="numbers"></i-tabler>
         </mat-icon>
@@ -90,20 +68,12 @@
       </mat-form-field>
       <mat-grid-list cols="5" rowHeight="50px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="consultarEquipoLocal()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarEquipoLocal()">
             Consultar Equipo Local
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="consultarEquipoVisita()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarEquipoVisita()">
             Consultar Equipo Visita
           </button>
         </mat-grid-tile>
@@ -118,22 +88,12 @@
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="limpiarSeleccion()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="limpiarSeleccion()">
             Limpiar Campos
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="frontPrincipal()"
-          >
-            Regresar
-          </button>
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="frontPrincipal()">Regresar</button>
         </mat-grid-tile>
       </mat-grid-list>
     </form>
@@ -141,16 +101,9 @@
     <mat-grid-list cols="2" rowHeight="600px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div *ngIf="dataEquipoLocal !== undefined">
-          <section
-            class="example-container mat-elevation-z8"
-            tabindex="0"
-            style="width: 450px"
-          >
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 450px">
             <table mat-table [dataSource]="dataEquipoLocal">
-              <ng-container
-                *ngFor="let column of columnsEquipoLocal"
-                [matColumnDef]="column.columnDef"
-              >
+              <ng-container *ngFor="let column of columnsEquipoLocal" [matColumnDef]="column.columnDef">
                 <th mat-header-cell *matHeaderCellDef>
                   {{ column.header }}
                 </th>
@@ -158,10 +111,7 @@
                   {{ column.cell(row) }}
                 </td>
               </ng-container>
-              <tr
-                mat-header-row
-                *matHeaderRowDef="displayedColumnsEquipoLocal; sticky: true"
-              ></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsEquipoLocal; sticky: true"></tr>
               <tr
                 mat-row
                 *matRowDef="let row; columns: displayedColumnsEquipoLocal"
@@ -173,16 +123,9 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div *ngIf="dataEquipoVisita !== undefined">
-          <section
-            class="example-container mat-elevation-z8"
-            tabindex="0"
-            style="width: 450px"
-          >
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 450px">
             <table mat-table [dataSource]="dataEquipoVisita">
-              <ng-container
-                *ngFor="let column of columnsEquipoVisita"
-                [matColumnDef]="column.columnDef"
-              >
+              <ng-container *ngFor="let column of columnsEquipoVisita" [matColumnDef]="column.columnDef">
                 <th mat-header-cell *matHeaderCellDef>
                   {{ column.header }}
                 </th>
@@ -190,10 +133,7 @@
                   {{ column.cell(row) }}
                 </td>
               </ng-container>
-              <tr
-                mat-header-row
-                *matHeaderRowDef="displayedColumnsEquipoVisita; sticky: true"
-              ></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsEquipoVisita; sticky: true"></tr>
               <tr
                 mat-row
                 *matRowDef="let row; columns: displayedColumnsEquipoVisita"
@@ -211,12 +151,7 @@
     <form [formGroup]="newForm">
       <mat-form-field class="col-md-3 col-sm-12">
         <mat-label>Nombre de Equipo Local</mat-label>
-        <input
-          matInput
-          [formControl]="equipoLocal"
-          required
-          placeholder="Nombre de Equipo Local"
-        />
+        <input matInput [formControl]="equipoLocal" required placeholder="Nombre de Equipo Local" />
         <mat-icon matSuffix>
           <i-tabler name="soccer-field"></i-tabler>
         </mat-icon>
@@ -224,27 +159,15 @@
       </mat-form-field>
       <mat-form-field class="col-md-3 col-sm-12">
         <mat-label>Nombre de Equipo Visita</mat-label>
-        <input
-          matInput
-          [formControl]="equipoVisita"
-          required
-          placeholder="Nombre de Equipo Visita"
-        />
+        <input matInput [formControl]="equipoVisita" required placeholder="Nombre de Equipo Visita" />
         <mat-icon matSuffix>
           <i-tabler name="soccer-field"></i-tabler>
         </mat-icon>
-        <mat-error *ngIf="equipoVisita.invalid">{{
-          getErrorVisita()
-        }}</mat-error>
+        <mat-error *ngIf="equipoVisita.invalid">{{ getErrorVisita() }}</mat-error>
       </mat-form-field>
       <mat-form-field class="col-md-2 col-sm-4">
         <mat-label>Jornada</mat-label>
-        <input
-          matInput
-          [formControl]="jornada"
-          required
-          placeholder="Jornada"
-        />
+        <input matInput [formControl]="jornada" required placeholder="Jornada" />
         <mat-icon matSuffix>
           <i-tabler name="numbers"></i-tabler>
         </mat-icon>
@@ -268,49 +191,27 @@
       </mat-form-field>
       <mat-grid-list cols="5" rowHeight="50px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="consultarPartido()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarPartido()">
             Consultar Partidos
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="actualizarPartido()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="actualizarPartido()">
             Actualizar Partido
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="eliminarPartido()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="eliminarPartido()">
             Eliminar Partido
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="limpiarCamposConsulta()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="limpiarCamposConsulta()">
             Limpiar Campos
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="frontPrincipal()"
-          >
-            Regresar
-          </button>
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="frontPrincipal()">Regresar</button>
         </mat-grid-tile>
       </mat-grid-list>
     </form>
@@ -318,10 +219,7 @@
     <div *ngIf="dataPartido !== undefined" class="col-md-12">
       <section class="example-container mat-elevation-z8" tabindex="0">
         <table mat-table [dataSource]="dataPartido">
-          <ng-container
-            *ngFor="let column of columnsPartido"
-            [matColumnDef]="column.columnDef"
-          >
+          <ng-container *ngFor="let column of columnsPartido" [matColumnDef]="column.columnDef">
             <th mat-header-cell *matHeaderCellDef>
               {{ column.header }}
             </th>
@@ -329,15 +227,8 @@
               {{ column.cell(row) }}
             </td>
           </ng-container>
-          <tr
-            mat-header-row
-            *matHeaderRowDef="displayColumnsPartido; sticky: true"
-          ></tr>
-          <tr
-            mat-row
-            *matRowDef="let row; columns: displayColumnsPartido"
-            (click)="selectRowConsulta(row)"
-          ></tr>
+          <tr mat-header-row *matHeaderRowDef="displayColumnsPartido; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayColumnsPartido" (click)="selectRowConsulta(row)"></tr>
         </table>
       </section>
     </div>

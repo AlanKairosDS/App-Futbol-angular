@@ -22,18 +22,13 @@ export class FutbolistasComponent {
   public headerSuccess = 'Proceso ejecutado correctamente';
   public headerError = 'Proceso ejecutado de forma incorrecta';
   public insertarSuccess = 'Se inserto el futbolista de forma correcta.';
-  public insertarError =
-    'Ocurrio un problema al insertar futbolista. Favor de intentar nuevamente.';
+  public insertarError = 'Ocurrio un problema al insertar futbolista. Favor de intentar nuevamente.';
   public actualizarSuccess = 'Se actualizo el futbolista de forma correcta.';
-  public actualizarError =
-    'Ocurrio un problema al actualizar futbolista. Favor de intentar nuevamente.';
+  public actualizarError = 'Ocurrio un problema al actualizar futbolista. Favor de intentar nuevamente.';
   public eliminarSuccess = 'Se elimina el futbolista de forma correcta.';
-  public eliminarError =
-    'Ocurrio un problema al eliminar futbolista. Favor de intentar nuevamente.';
-  public consultarSuccess =
-    'Se realiza la consulta de futbolistas de forma correcta.';
-  public consultarError =
-    'Ocurrio un problema al consultar futbolistas. Favor de intentar nuevamente.';
+  public eliminarError = 'Ocurrio un problema al eliminar futbolista. Favor de intentar nuevamente.';
+  public consultarSuccess = 'Se realiza la consulta de futbolistas de forma correcta.';
+  public consultarError = 'Ocurrio un problema al consultar futbolistas. Favor de intentar nuevamente.';
   public nombre = new FormControl('', [Validators.required]);
   public posicion = new FormControl('', [Validators.required]);
   public dataTable: any | undefined;
@@ -68,10 +63,7 @@ export class FutbolistasComponent {
   ];
   public displayedColumns = this.columns.map((c) => c.columnDef);
 
-  constructor(
-    public futService: FutbolistasService,
-    public dialog: MatDialog
-  ) {}
+  constructor(public futService: FutbolistasService, public dialog: MatDialog) {}
 
   public newForm = new FormGroup({
     nombre: this.nombre,
@@ -104,8 +96,7 @@ export class FutbolistasComponent {
         (data) => {
           let dialogInsertarSuccess = this.dialog.open(DialogComponent);
           dialogInsertarSuccess.componentInstance.header = this.headerSuccess;
-          dialogInsertarSuccess.componentInstance.message =
-            this.insertarSuccess;
+          dialogInsertarSuccess.componentInstance.message = this.insertarSuccess;
         },
         (err: HttpErrorResponse) => {
           let dialogInsertarError = this.dialog.open(DialogComponent);
@@ -128,8 +119,7 @@ export class FutbolistasComponent {
         (data) => {
           let dialogInsertarSuccess = this.dialog.open(DialogComponent);
           dialogInsertarSuccess.componentInstance.header = this.headerSuccess;
-          dialogInsertarSuccess.componentInstance.message =
-            this.actualizarSuccess;
+          dialogInsertarSuccess.componentInstance.message = this.actualizarSuccess;
         },
         (err: HttpErrorResponse) => {
           let dialogInsertarError = this.dialog.open(DialogComponent);

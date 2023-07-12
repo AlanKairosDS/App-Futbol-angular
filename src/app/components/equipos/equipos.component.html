@@ -1,10 +1,7 @@
 <div class="center-form-equipo" style="margin-bottom: 40px">
   <span id="brand-form-equipo">EQUIPOS</span>
 </div>
-<div
-  *ngIf="equipos === undefined && futbolistas === undefined"
-  class="col-md-12"
->
+<div *ngIf="equipos === undefined && futbolistas === undefined" class="col-md-12">
   <mat-grid-list cols="1" rowHeight="150px">
     <mat-grid-tile [colspan]="1" [rowspan]="1" class="col-md-12 col-sm-12">
       <button
@@ -31,12 +28,7 @@
     <form [formGroup]="newForm">
       <mat-form-field class="col-md-4 col-sm-12">
         <mat-label>Nombre de Equipo</mat-label>
-        <input
-          matInput
-          [formControl]="nombre"
-          required
-          placeholder="Nombre de Equipo"
-        />
+        <input matInput [formControl]="nombre" required placeholder="Nombre de Equipo" />
         <mat-icon matSuffix>
           <i-tabler name="soccer-field"></i-tabler>
         </mat-icon>
@@ -90,31 +82,17 @@
             </button>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <button
-              mat-raised-button
-              style="background-color: #6ee0f3"
-              (click)="consultarEquipo()"
-            >
+            <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarEquipo()">
               Consultar Equipo
             </button>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <button
-              mat-raised-button
-              style="background-color: #6ee0f3"
-              (click)="limpiarCampos()"
-            >
+            <button mat-raised-button style="background-color: #6ee0f3" (click)="limpiarCampos()">
               Limpiar Campos
             </button>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <button
-              mat-raised-button
-              style="background-color: #6ee0f3"
-              (click)="regresarPrincipal()"
-            >
-              Regresar
-            </button>
+            <button mat-raised-button style="background-color: #6ee0f3" (click)="regresarPrincipal()">Regresar</button>
           </mat-grid-tile>
         </mat-grid-list>
       </div>
@@ -124,10 +102,7 @@
   <div *ngIf="dataTable !== undefined" class="col-md-12">
     <section class="example-container mat-elevation-z8" tabindex="0">
       <table mat-table [dataSource]="dataTable">
-        <ng-container
-          *ngFor="let column of columns"
-          [matColumnDef]="column.columnDef"
-        >
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
           <th mat-header-cell *matHeaderCellDef>
             {{ column.header }}
           </th>
@@ -135,15 +110,8 @@
             {{ column.cell(row) }}
           </td>
         </ng-container>
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumns; sticky: true"
-        ></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: displayedColumns"
-          (click)="selectRow(row)"
-        ></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selectRow(row)"></tr>
       </table>
     </section>
   </div>
@@ -166,29 +134,19 @@
     </mat-grid-list>
     <mat-grid-list cols="5" rowHeight="50px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <button
-          mat-raised-button
-          style="background-color: #6ee0f3"
-          (click)="consultarEquipo()"
-        >
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarEquipo()">
           Consultar Equipos
         </button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <button
-          mat-raised-button
-          style="background-color: #6ee0f3"
-          (click)="consultarFutbolista()"
-        >
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarFutbolista()">
           Consultar Futbolistas
         </button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <button
           mat-raised-button
-          [disabled]="
-            nombreEquipo === undefined || nombreFutbolista === undefined
-          "
+          [disabled]="nombreEquipo === undefined || nombreFutbolista === undefined"
           style="background-color: #6ee0f3"
           (click)="registrarFutbolista()"
         >
@@ -196,38 +154,19 @@
         </button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <button
-          mat-raised-button
-          style="background-color: #6ee0f3"
-          (click)="limpiarSeleccion()"
-        >
-          Limpiar Campos
-        </button>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="limpiarSeleccion()">Limpiar Campos</button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <button
-          mat-raised-button
-          style="background-color: #6ee0f3"
-          (click)="regresarPrincipal()"
-        >
-          Regresar
-        </button>
+        <button mat-raised-button style="background-color: #6ee0f3" (click)="regresarPrincipal()">Regresar</button>
       </mat-grid-tile>
     </mat-grid-list>
     <br />
     <mat-grid-list cols="2" rowHeight="600px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div *ngIf="dataEquipo !== undefined">
-          <section
-            class="example-container mat-elevation-z8"
-            tabindex="0"
-            style="width: 450px"
-          >
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 450px">
             <table mat-table [dataSource]="dataEquipo">
-              <ng-container
-                *ngFor="let column of columnsEquipo"
-                [matColumnDef]="column.columnDef"
-              >
+              <ng-container *ngFor="let column of columnsEquipo" [matColumnDef]="column.columnDef">
                 <th mat-header-cell *matHeaderCellDef>
                   {{ column.header }}
                 </th>
@@ -235,31 +174,17 @@
                   {{ column.cell(row) }}
                 </td>
               </ng-container>
-              <tr
-                mat-header-row
-                *matHeaderRowDef="displayedColumnsEquipo; sticky: true"
-              ></tr>
-              <tr
-                mat-row
-                *matRowDef="let row; columns: displayedColumnsEquipo"
-                (click)="selectRowEquipo(row)"
-              ></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsEquipo; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsEquipo" (click)="selectRowEquipo(row)"></tr>
             </table>
           </section>
         </div>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div *ngIf="dataFutbolista !== undefined">
-          <section
-            class="example-container mat-elevation-z8"
-            tabindex="0"
-            style="width: 450px"
-          >
+          <section class="example-container mat-elevation-z8" tabindex="0" style="width: 450px">
             <table mat-table [dataSource]="dataFutbolista">
-              <ng-container
-                *ngFor="let column of columnsFutbolista"
-                [matColumnDef]="column.columnDef"
-              >
+              <ng-container *ngFor="let column of columnsFutbolista" [matColumnDef]="column.columnDef">
                 <th mat-header-cell *matHeaderCellDef>
                   {{ column.header }}
                 </th>
@@ -267,10 +192,7 @@
                   {{ column.cell(row) }}
                 </td>
               </ng-container>
-              <tr
-                mat-header-row
-                *matHeaderRowDef="displayedColumnsFutbolista; sticky: true"
-              ></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsFutbolista; sticky: true"></tr>
               <tr
                 mat-row
                 *matRowDef="let row; columns: displayedColumnsFutbolista"

@@ -5,12 +5,7 @@
   <form [formGroup]="newForm">
     <mat-form-field class="col-md-6">
       <mat-label>Nombre Completo de Futbolista</mat-label>
-      <input
-        matInput
-        [formControl]="nombre"
-        required
-        placeholder="Nombre Completo de Futbolista"
-      />
+      <input matInput [formControl]="nombre" required placeholder="Nombre Completo de Futbolista" />
       <mat-icon matSuffix>
         <i-tabler name="shirt-sport"></i-tabler>
       </mat-icon>
@@ -18,12 +13,7 @@
     </mat-form-field>
     <mat-form-field class="col-md-6">
       <mat-label>Posición de Futbolista</mat-label>
-      <input
-        matInput
-        [formControl]="posicion"
-        required
-        placeholder="Posición de Futbolista"
-      />
+      <input matInput [formControl]="posicion" required placeholder="Posición de Futbolista" />
       <mat-icon matSuffix>
         <i-tabler name="soccer-field"></i-tabler>
       </mat-icon>
@@ -63,22 +53,12 @@
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="consultarFutbolista()"
-          >
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="consultarFutbolista()">
             Consultar Futbolista
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            mat-raised-button
-            style="background-color: #6ee0f3"
-            (click)="limpiarCampos()"
-          >
-            Limpiar Campos
-          </button>
+          <button mat-raised-button style="background-color: #6ee0f3" (click)="limpiarCampos()">Limpiar Campos</button>
         </mat-grid-tile>
       </mat-grid-list>
     </div>
@@ -88,10 +68,7 @@
 <div *ngIf="dataTable !== undefined" class="col-md-12">
   <section class="example-container mat-elevation-z8" tabindex="0">
     <table mat-table [dataSource]="dataTable">
-      <ng-container
-        *ngFor="let column of columns"
-        [matColumnDef]="column.columnDef"
-      >
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
         <th mat-header-cell *matHeaderCellDef>
           {{ column.header }}
         </th>
@@ -100,11 +77,7 @@
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr
-        mat-row
-        *matRowDef="let row; columns: displayedColumns"
-        (click)="selectRow(row)"
-      ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selectRow(row)"></tr>
     </table>
   </section>
 </div>

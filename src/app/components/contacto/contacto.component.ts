@@ -9,10 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ContactoComponent {
   public nombre = new FormControl('', [Validators.required]);
   public email = new FormControl('', [Validators.required, Validators.email]);
-  public telefono = new FormControl('', [
-    Validators.required,
-    Validators.pattern('[0-9]{10}'),
-  ]);
+  public telefono = new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]);
   public comentarios = new FormControl('', [Validators.required]);
 
   public newForm = new FormGroup({

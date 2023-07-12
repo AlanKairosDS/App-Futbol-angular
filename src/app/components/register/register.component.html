@@ -24,12 +24,7 @@
         <br />
         <mat-form-field style="width: 350px">
           <mat-label>Email</mat-label>
-          <input
-            matInput
-            [formControl]="email"
-            required
-            placeholder="pat@example.com"
-          />
+          <input matInput [formControl]="email" required placeholder="pat@example.com" />
           <mat-icon matSuffix>
             <i-tabler name="mail"></i-tabler>
           </mat-icon>
@@ -56,17 +51,10 @@
           >
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
-          <mat-error *ngIf="password.invalid">{{
-            getErrorPassword()
-          }}</mat-error>
+          <mat-error *ngIf="password.invalid">{{ getErrorPassword() }}</mat-error>
         </mat-form-field>
         <br /><br />
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="mostrar_datos()"
-          [disabled]="!newForm.valid"
-        >
+        <button mat-raised-button color="primary" (click)="mostrar_datos()" [disabled]="!newForm.valid">
           Confirmar Registro
         </button>
       </form>

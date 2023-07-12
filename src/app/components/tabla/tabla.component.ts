@@ -34,18 +34,12 @@ export class TablaComponent {
   public headerSuccess = 'Proceso ejecutado correctamente';
   public headerError = 'Proceso ejecutado de forma incorrecta';
   public insertarSuccess = 'Se creo tabla general de forma correcta.';
-  public insertarError =
-    'Ocurrio un problema al crear tabla general. Favor de intentar nuevamente.';
-  public consultarSuccess =
-    'Se realiza la consulta de tabla general de forma correcta.';
-  public consultarError =
-    'Ocurrio un problema al consultar tabla general. Favor de intentar nuevamente.';
-  public consultarEquipoSuccess =
-    'Se realiza la consulta de equipos de forma correcta.';
-  public consultarEquipoError =
-    'Ocurrio un problema al consultar equipos. Favor de intentar nuevamente.';
-  public insertarEquipoSuccess =
-    'Se agrego equipo a la tabla general de forma correcta.';
+  public insertarError = 'Ocurrio un problema al crear tabla general. Favor de intentar nuevamente.';
+  public consultarSuccess = 'Se realiza la consulta de tabla general de forma correcta.';
+  public consultarError = 'Ocurrio un problema al consultar tabla general. Favor de intentar nuevamente.';
+  public consultarEquipoSuccess = 'Se realiza la consulta de equipos de forma correcta.';
+  public consultarEquipoError = 'Ocurrio un problema al consultar equipos. Favor de intentar nuevamente.';
+  public insertarEquipoSuccess = 'Se agrego equipo a la tabla general de forma correcta.';
   public insertarEquipoError =
     'Ocurrio un problema al agregar equipo a la tabla general. Favor de intentar nuevamente.';
 
@@ -124,11 +118,7 @@ export class TablaComponent {
   ];
   public displayColumnsTablaId = this.columnsTablaId.map((c) => c.columnDef);
 
-  constructor(
-    public equipoService: EquiposService,
-    public tablaService: TablaService,
-    public dialog: MatDialog
-  ) {}
+  constructor(public equipoService: EquiposService, public tablaService: TablaService, public dialog: MatDialog) {}
 
   public newForm = new FormGroup({
     nombre: this.nombre,
@@ -197,8 +187,7 @@ export class TablaComponent {
         next: (data) => {
           let dialogInsertarSuccess = this.dialog.open(DialogComponent);
           dialogInsertarSuccess.componentInstance.header = this.headerSuccess;
-          dialogInsertarSuccess.componentInstance.message =
-            this.insertarSuccess;
+          dialogInsertarSuccess.componentInstance.message = this.insertarSuccess;
         },
         error: (err: HttpErrorResponse) => {
           let dialogInsertarError = this.dialog.open(DialogComponent);
@@ -219,8 +208,7 @@ export class TablaComponent {
 
         let dialogConsultarSuccess = this.dialog.open(DialogComponent);
         dialogConsultarSuccess.componentInstance.header = this.headerSuccess;
-        dialogConsultarSuccess.componentInstance.message =
-          this.consultarSuccess;
+        dialogConsultarSuccess.componentInstance.message = this.consultarSuccess;
       },
       error: (err: HttpErrorResponse) => {
         let dialogConsultarError = this.dialog.open(DialogComponent);
@@ -236,8 +224,7 @@ export class TablaComponent {
         this.dataTableId = this.armarTablaGeneral(data.data[0].equipos);
         let dialogConsultarSuccess = this.dialog.open(DialogComponent);
         dialogConsultarSuccess.componentInstance.header = this.headerSuccess;
-        dialogConsultarSuccess.componentInstance.message =
-          this.consultarSuccess;
+        dialogConsultarSuccess.componentInstance.message = this.consultarSuccess;
       },
       error: (err: HttpErrorResponse) => {
         let dialogConsultarError = this.dialog.open(DialogComponent);
@@ -294,34 +281,28 @@ export class TablaComponent {
         this.dataEquipo = data.data;
         let dialogConsultarSuccess = this.dialog.open(DialogComponent);
         dialogConsultarSuccess.componentInstance.header = this.headerSuccess;
-        dialogConsultarSuccess.componentInstance.message =
-          this.consultarEquipoSuccess;
+        dialogConsultarSuccess.componentInstance.message = this.consultarEquipoSuccess;
       },
       error: (err: HttpErrorResponse) => {
         let dialogConsultarError = this.dialog.open(DialogComponent);
         dialogConsultarError.componentInstance.header = this.headerError;
-        dialogConsultarError.componentInstance.message =
-          this.consultarEquipoError;
+        dialogConsultarError.componentInstance.message = this.consultarEquipoError;
       },
     });
   }
 
   registrarEquipo(): void {
-    this.tablaService
-      .registrar_equipo(this.dataSelectTablas.id, this.dataSelectEquipo.id)
-      .subscribe({
-        next: () => {
-          let dialogInsertarSuccess = this.dialog.open(DialogComponent);
-          dialogInsertarSuccess.componentInstance.header = this.headerSuccess;
-          dialogInsertarSuccess.componentInstance.message =
-            this.insertarEquipoSuccess;
-        },
-        error: (err: HttpErrorResponse) => {
-          let dialogInsertarError = this.dialog.open(DialogComponent);
-          dialogInsertarError.componentInstance.header = this.headerError;
-          dialogInsertarError.componentInstance.message =
-            this.insertarEquipoError;
-        },
-      });
+    this.tablaService.registrar_equipo(this.dataSelectTablas.id, this.dataSelectEquipo.id).subscribe({
+      next: () => {
+        let dialogInsertarSuccess = this.dialog.open(DialogComponent);
+        dialogInsertarSuccess.componentInstance.header = this.headerSuccess;
+        dialogInsertarSuccess.componentInstance.message = this.insertarEquipoSuccess;
+      },
+      error: (err: HttpErrorResponse) => {
+        let dialogInsertarError = this.dialog.open(DialogComponent);
+        dialogInsertarError.componentInstance.header = this.headerError;
+        dialogInsertarError.componentInstance.message = this.insertarEquipoError;
+      },
+    });
   }
 }
