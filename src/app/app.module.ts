@@ -20,6 +20,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+import { EstadVaronilComponent } from './components/estadisticas/estadVaronil.component';
+import { EstadFemenilComponent } from './components/estadisticas/estadFemenil.component';
 import { ReglamentoComponent } from './components/reglamento/reglamento.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -56,6 +58,8 @@ import { FemenilComponent } from './components/femenil/femenil.component';
     LigaComponent,
     VaronilComponent,
     FemenilComponent,
+    EstadVaronilComponent,
+    EstadFemenilComponent,
   ],
   imports: [
     BrowserModule,

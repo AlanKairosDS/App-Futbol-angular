@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { EquiposService } from 'src/app/services/equipos.service';
 import { PartidosService } from 'src/app/services/partidos.service';
 import { ResultadosService } from 'src/app/services/resultados.service';
