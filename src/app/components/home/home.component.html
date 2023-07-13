@@ -1,1 +1,117 @@
-<p>Works</p>
+<!-- Seccion de Carousel de Imagenes -->
+<section>
+  <app-carousel></app-carousel>
+</section>
+<!-- Seccion de Informacion -->
+<section>
+  <div
+    style="
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      background-color: #074e67;
+    "
+  >
+    INFORMACIÓN
+  </div>
+  <br />
+  <mat-grid-list cols="4" rowHeight="300px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" style="text-align: center">
+      <a [routerLink]="['/Partidos']">
+        <img src="assets/images/logos/calendario.jfif" style="width: 200px; height: 100%" />
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" style="text-align: center">
+      <a [routerLink]="['/Estadisticas']">
+        <img src="assets/images/logos/estad.png" style="width: 200px; height: 100%" />
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" style="text-align: center">
+      <a [routerLink]="['/Contacto']">
+        <img src="assets/images/logos/contact.png" style="width: 200px; height: 100%" />
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" style="text-align: center">
+      <a [routerLink]="['/Reglamento']">
+        <img src="assets/images/logos/reglamento.png" style="width: 200px; height: 100%" />
+      </a>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br />
+</section>
+<!-- Seccion de Galeria -->
+<section>
+  <div
+    style="
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      background-color: #074e67;
+    "
+  >
+    GALERIA
+  </div>
+  <br />
+  <mat-grid-list cols="7" rowHeight="200px">
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+      <img
+        src="assets/images/products/s4.jpg"
+        style="object-fit: cover; object-position: center center; width: 100%; height: 100%"
+      />
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="3">
+      <img
+        src="assets/images/products/s7.jpg"
+        style="object-fit: cover; object-position: center center; width: 100%; height: 100%"
+      />
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <img
+        src="assets/images/products/s5.jpg"
+        style="object-fit: cover; object-position: center center; width: 100%; height: 100%"
+      />
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <img
+        src="assets/images/products/s11.jpg"
+        style="object-fit: cover; object-position: center center; width: 100%; height: 100%"
+      />
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br /><br />
+</section>
+<!-- Seccion de Patrocinadores -->
+<section>
+  <div
+    style="
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      background-color: #074e67;
+    "
+  >
+    PATROCINADORES
+  </div>
+  <br />
+  <mat-grid-list cols="4" rowHeight="200px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <img src="assets/images/logos/fly_emirates.png" style="width: 200px; height: 100%" />
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <img src="assets/images/logos/kings_league.png" style="width: 170px; height: 100%" />
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <img src="assets/images/logos/queens_league.png" style="width: 180px; height: 100%" />
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <img src="assets/images/logos/intel.png" style="width: 200px; height: 100%" />
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>
+<br /><br />

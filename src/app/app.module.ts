@@ -7,6 +7,8 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
 import { AuthenticationService } from './services/authentication.service';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 // icons
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
@@ -14,6 +16,8 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 //Import all material modules
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+//Import components
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
@@ -37,6 +41,7 @@ import { VaronilComponent } from './components/varonil/varonil.component';
 import { FemenilComponent } from './components/femenil/femenil.component';
 import { CalendarioVaronilComponent } from './components/calendario/calVaronil.component';
 import { CalendarioFemenilComponent } from './components/calendario/calFemenil.component';
+import { CarouselComponent } from './components/home/carousel.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +69,7 @@ import { CalendarioFemenilComponent } from './components/calendario/calFemenil.c
     EstadFemenilComponent,
     CalendarioFemenilComponent,
     CalendarioVaronilComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +80,7 @@ import { CalendarioFemenilComponent } from './components/calendario/calFemenil.c
     MaterialModule,
     TablerIconsModule.pick(TablerIcons),
     routing,
+    NgbModule,
   ],
   providers: [appRoutingProviders, AuthenticationService],
   exports: [TablerIconsModule],
