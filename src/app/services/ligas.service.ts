@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LigasService {
-  public ctxVaronil = 'http://localhost:8000/msvc-liga/liga-varonil/api';
-  public ctxFemenil = 'http://localhost:8000/msvc-liga/liga-femenil/api';
+  public ctxVaronil = environment.url_Liga + '/msvc-liga/liga-varonil/api';
+  public ctxFemenil = environment.url_Liga + '/msvc-liga/liga-femenil/api';
 
   constructor(private http: HttpClient) {}
 

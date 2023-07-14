@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../components/dialog/dialog.component';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class AuthenticationService {
   constructor(private _router: Router, private http: HttpClient, public dialog: MatDialog) {}
 
   iniciarSesion(request: any): Observable<any> {
-    return this.http.post('http://localhost:8002/msvc-login/api/auth/iniciar-sesion', request);
+    return this.http.post(environment.url_Login + '/msvc-login/api/auth/iniciar-sesion', request);
   }
 
   cerrarSesion(): void {
@@ -29,6 +30,6 @@ export class AuthenticationService {
   }
 
   nuevaCuenta(request: any): Observable<any> {
-    return this.http.post('http://localhost:8002/msvc-login/api/auth/registrar-usuario', request);
+    return this.http.post(environment.url_Login + '/msvc-login/api/auth/registrar-usuario', request);
   }
 }
